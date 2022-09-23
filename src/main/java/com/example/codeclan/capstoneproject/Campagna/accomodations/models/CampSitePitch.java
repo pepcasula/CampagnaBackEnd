@@ -1,4 +1,4 @@
-package com.example.codeclan.capstoneproject.Campagna.Accomodations.Models;
+package com.example.codeclan.capstoneproject.Campagna.accomodations.models;
 
 public class CampSitePitch extends Room{
 

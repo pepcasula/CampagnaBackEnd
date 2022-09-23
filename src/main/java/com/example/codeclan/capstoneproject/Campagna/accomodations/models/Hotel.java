@@ -1,4 +1,4 @@
-package com.example.codeclan.capstoneproject.Campagna.Accomodations.Models;
+package com.example.codeclan.capstoneproject.Campagna.accomodations.models;
 
 import java.util.ArrayList;
 import java.util.List;
