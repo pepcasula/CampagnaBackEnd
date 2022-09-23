@@ -1,4 +1,4 @@
-package com.example.codeclan.capstoneproject.Campagna.Accomodation.Models;
+package com.example.codeclan.capstoneproject.Campagna.Accomodations.Models;
 
 public class BAndBRoom extends Room{
 
