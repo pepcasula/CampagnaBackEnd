@@ -1,16 +1,16 @@
-package com.example.codeclan.capstoneproject.Campagna.Accomodations.Models;
+package com.example.codeclan.capstoneproject.Campagna.accomodations.models;
 
 public abstract class Room {
 
     // test comment
 
     private String name;
-    private int capacity;
+    private RoomType roomType;
     private int price;
 
-    public Room(String name, int capacity, int price) {
+    public Room(String name, RoomType roomType, int price) {
         this.name = name;
-        this.capacity = capacity;
+        this.roomType = roomType;
         this.price = price;
     }
 
@@ -22,12 +22,11 @@ public abstract class Room {
         this.name = name;
     }
 
-    public int getCapacity() {
-        return capacity;
+    public RoomType getRoomType() {
+        return roomType;
     }
-
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
+    public  int getRoomTypeCapacity(){
+        return this.roomType.getCapacity();
     }
 
     public int getPrice() {
