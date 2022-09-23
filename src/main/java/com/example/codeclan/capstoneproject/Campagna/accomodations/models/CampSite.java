@@ -11,4 +11,16 @@ public class CampSite extends Accommodation{
         super(name);
         this.sites = new ArrayList<>();
     }
+
+    public int numberOfSites(){
+        return this.sites.size();
+    }
+
+    public void addCampSitePitch(CampSitePitch campSitePitch){
+        this.sites.add(campSitePitch);
+    }
+
+    public int getSitePrice(CampSitePitch campSitePitch){
+        return campSitePitch.getPrice();
+    }
 }
