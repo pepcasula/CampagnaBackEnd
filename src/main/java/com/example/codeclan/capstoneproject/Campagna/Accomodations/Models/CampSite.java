@@ -1,7 +1,5 @@
 package com.example.codeclan.capstoneproject.Campagna.Accomodations.Models;
 
-import com.example.codeclan.capstoneproject.Campagna.Accomodation.Models.CampSitePitch;
-
 import java.util.ArrayList;
 import java.util.List;
 
