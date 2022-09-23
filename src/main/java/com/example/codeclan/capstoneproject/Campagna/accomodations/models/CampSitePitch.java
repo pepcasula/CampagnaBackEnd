@@ -1,9 +1,15 @@
 package com.example.codeclan.capstoneproject.Campagna.accomodations.models;
 
-public class CampSitePitch extends Room{
+public class CampSitePitch{
 
-    public CampSitePitch(String name, int capacity, int price) {
-        super(name, capacity, price);
+    private String name;
+    private int capacity;
+    private int price;
+
+    public CampSitePitch(String name, int capacity, int price){
+        this.name = name;
+        this.capacity = capacity;
+        this.price = price;
     }
 
     public String getName() {

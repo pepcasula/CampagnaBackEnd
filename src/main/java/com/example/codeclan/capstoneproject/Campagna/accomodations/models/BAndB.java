@@ -12,5 +12,15 @@ public class BAndB extends Accommodation{
         this.rooms = new ArrayList<>();
     }
 
+    public int numberOfRooms(){
+        return this.rooms.size();
+    }
 
+    public void addRoom(BAndBRoom bAndB){
+        this.rooms.add(bAndB);
+    }
+
+    public int getRoomPrice(BAndBRoom bAndBRoom){
+        return bAndBRoom.getPrice();
+    }
 }

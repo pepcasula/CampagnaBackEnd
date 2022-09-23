@@ -11,4 +11,16 @@ public class Hotel extends Accommodation{
         super(name);
         this.rooms = new ArrayList<>();
     }
+
+    public int numberOfRooms(){
+        return this.rooms.size();
+    }
+
+    public void addRoom(HotelRoom room){
+        this.rooms.add(room);
+    }
+
+    public int getRoomPrice(HotelRoom hotelRoom){
+        return hotelRoom.getPrice();
+    }
 }
