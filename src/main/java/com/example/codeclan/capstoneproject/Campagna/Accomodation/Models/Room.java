@@ -2,6 +2,8 @@ package com.example.codeclan.capstoneproject.Campagna.Accomodation.Models;
 
 public abstract class Room {
 
+    // test comment
+
     private String name;
     private int capacity;
     private int price;
