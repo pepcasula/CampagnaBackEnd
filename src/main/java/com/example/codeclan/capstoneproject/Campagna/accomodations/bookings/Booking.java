@@ -15,7 +15,7 @@ public class Booking {
 
     public Booking(int year, int month, int day, int numberOfDays) {
         this.startDate = bookDate(year, month, day);
-        this.daysBooked = new ArrayList<>();
+        this.daysBooked = setDaysBooked(numberOfDays);
         this.numberOfDays = numberOfDays;
     }
 
@@ -132,11 +132,15 @@ public class Booking {
         return bookingDate;
     }
 
-    public void setDaysBooked(int numberOfDays) {
+    public ArrayList<LocalDate> setDaysBooked(int numberOfDays) {
         int firstDay = this.startDate.getDayOfMonth();
         int month = this.startDate.getMonthValue();
         int year = this.startDate.getYear();
-//        daysBooked.add();
+        ArrayList<LocalDate> daysToBook = new ArrayList<>();
+        for(int i = 0; i < numberOfDays; i++){
+            daysToBook.add(bookDate(year, month, firstDay + i));
+        }
+        return daysToBook;
     }
 
     public int getNumberOfDays() {
