@@ -46,6 +46,14 @@ public abstract class Room {
         this.price = price;
     }
 
+    public boolean isBigEnough(int numberOfGuests){
+        if(numberOfGuests < getRoomTypeCapacity()){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public List<Booking> getBookings() {
         return bookings;
     }
@@ -70,7 +78,9 @@ public abstract class Room {
     public boolean checkNotDoubleBooked(Booking possibleBooking){
         boolean doubleBooked = false;
         for(Booking booking : this.bookings){
-            doubleBooked = Stream.of(booking.getDaysBooked()).anyMatch(possibleBooking.getDaysBooked()::contains);
+            for(LocalDate date : possibleBooking.getDaysBooked()){
+                doubleBooked = Stream.of(booking.getDaysBooked()).anyMatch(dayBooked -> dayBooked.contains(date));
+            }
         }
         return doubleBooked;
     }

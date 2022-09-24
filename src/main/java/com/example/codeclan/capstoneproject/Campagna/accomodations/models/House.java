@@ -58,25 +58,30 @@ public class House extends Accommodation{
         this.bookings.add(booking);
     }
 
-    public Booking newBooking(int day, int month, int year, int numberOfDays){
-        Booking booking = new Booking(day, month, year, numberOfDays);
+    public Booking newBooking(int year, int month, int day, int numberOfDays){
+        Booking booking = new Booking(year, month, day, numberOfDays);
         return booking;
     }
 
     public boolean checkNotDoubleBooked(Booking possibleBooking){
         boolean doubleBooked = false;
         for(Booking booking : this.bookings){
-            doubleBooked = Stream.of(booking.getDaysBooked()).anyMatch(possibleBooking.getDaysBooked()::contains);
+            for(LocalDate date : possibleBooking.getDaysBooked()){
+                doubleBooked = Stream.of(booking.getDaysBooked()).anyMatch(dayBooked -> dayBooked.contains(date));
+            }
         }
         return doubleBooked;
     }
 
-    public void makeBooking(int day, int month, int year, int numberOfDays){
-        Booking possibleBooking = newBooking(day , month , year , numberOfDays );
-        if (checkNotDoubleBooked(possibleBooking)){
-            return;
-        } else {
-            addBooking(possibleBooking);
+    public void makeBooking(int year, int month, int day, int numberOfDays , int numberOfGuests){
+        if(numberOfGuests < this.currentCapacity){
+            Booking possibleBooking = newBooking(year , month , day , numberOfDays );
+            if (checkNotDoubleBooked(possibleBooking)){
+                return;
+            } else {
+                addBooking(possibleBooking);
+            }
         }
     }
+
 }

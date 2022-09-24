@@ -82,14 +82,14 @@ public class RoomBookingTest {
     @Test
     public void roomDoesNotDoubleBook(){
         hotelRoom.makeBooking(2020, 12, 30, 4);
-        hotelRoom.newBooking(2020, 12, 31, 3);
+        hotelRoom.makeBooking(2020, 12, 31, 3);
         assertEquals(overAllBooking, hotelRoom.getBookedDays());
     }
 
     @Test
     public void roomStillHasTwoBooking(){
         hotelRoom.makeBooking(2020, 12, 30, 4);
-        hotelRoom.newBooking(2020, 12, 31, 3);
+        hotelRoom.makeBooking(2020, 12, 31, 3);
         assertEquals(2, hotelRoom.getBookings().size());
     }
 }

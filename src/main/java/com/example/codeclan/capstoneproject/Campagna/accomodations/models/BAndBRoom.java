@@ -10,4 +10,8 @@ public class BAndBRoom extends Room{
         return bAndBRoom.getPrice();
     }
 
+    public int getCapacity(){
+        return this.getRoomType().getCapacity();
+    }
+
 }

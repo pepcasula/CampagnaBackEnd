@@ -7,5 +7,10 @@ public class HotelRoom extends Room {
     }
 
 
+    public int getCapacity(){
+        return this.getRoomType().getCapacity();
+    }
+
+
 
 }
