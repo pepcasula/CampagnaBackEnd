@@ -18,6 +18,7 @@ public class BookingTest {
     LocalDate date1;
     LocalDate date3;
     LocalDate date4;
+    List<LocalDate> nearNewYearBooked;
     LocalDate afterNewYear;
     LocalDate newYear;
     LocalDate newYearEve;
@@ -26,7 +27,6 @@ public class BookingTest {
     Booking booking;
     Booking newYearBooking;
     List<LocalDate> daysBooked;
-    List<LocalDate> nearNewYearBooked;
     LocalDate dayBooked1;
     LocalDate dayBooked2;
     LocalDate dayBooked3;
