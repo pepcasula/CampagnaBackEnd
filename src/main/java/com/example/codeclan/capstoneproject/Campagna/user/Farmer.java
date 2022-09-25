@@ -1,19 +1,32 @@
 package com.example.codeclan.capstoneproject.Campagna.user;
 
+import com.example.codeclan.capstoneproject.Campagna.products.Food;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class Farmer extends User{
 
-//    private List<Product> products;
+    private List<Food> farmerStock;
 
     public Farmer(String name, String info) {
         super(name, info);
-//        this.products = new ArrayList<>();
+        this.farmerStock = new ArrayList<>();
     }
 
-//    public int getNumberOfProducts(){
-//        return this.products.size();
-//    }
+    public List<Food> getStock() {
+        return farmerStock;
+    }
 
-//    public void addProduct(Product product){
-//        this.product.add(product);
-//    }
+    public void setStock(List<Food> products) {
+        this.farmerStock = products;
+    }
+
+    public int countStock(){
+        return this.farmerStock.size();
+    }
+
+    public void clearStock(){
+        this.farmerStock.clear();
+    }
 }
