@@ -24,6 +24,10 @@ public abstract class User {
         return wallet;
     }
 
+    public void setWallet(int wallet) {
+        this.wallet = wallet;
+    }
+
     public void sell(int amount) {
         this.wallet += amount;
     }
