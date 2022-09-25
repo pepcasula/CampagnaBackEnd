@@ -2,6 +2,7 @@ package com.example.codeclan.capstoneproject.Campagna.accomodations.models;
 
 import com.example.codeclan.capstoneproject.Campagna.accomodations.bookings.Booking;
 
+import javax.persistence.Column;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,10 +11,13 @@ import java.util.stream.Stream;
 public abstract class Room {
 
     // test comment
-
+    @Column
     private String name;
+    @Column
     private RoomType roomType;
+    @Column
     private int price;
+    @Column
     private List<Booking> bookings;
 
     public Room(String name, RoomType roomType, int price) {
@@ -70,8 +74,8 @@ public abstract class Room {
         this.bookings.add(booking);
     }
 
-    public Booking newBooking(int day, int month, int year, int numberOfDays){
-        Booking booking = new Booking(day, month, year, numberOfDays);
+    public Booking newBooking(int year, int month, int day, int numberOfDays){
+        Booking booking = new Booking(year, month, day, numberOfDays);
         return booking;
     }
 
@@ -85,12 +89,13 @@ public abstract class Room {
         return doubleBooked;
     }
 
-    public void makeBooking(int day, int month, int year, int numberOfDays){
-        Booking possibleBooking = newBooking(day , month , year , numberOfDays );
+    public int makeBooking(int year, int month, int day, int numberOfDays, int numberOfGuests){
+        Booking possibleBooking = newBooking(year , month , day , numberOfDays );
         if (checkNotDoubleBooked(possibleBooking)){
-            return;
+            return 0;
         } else {
             addBooking(possibleBooking);
+            return getRoomTypeCapacity();
         }
     }
 }

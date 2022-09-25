@@ -2,16 +2,27 @@ package com.example.codeclan.capstoneproject.Campagna.accomodations.models;
 
 import com.example.codeclan.capstoneproject.Campagna.accomodations.bookings.Booking;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
+@Entity
+@Table(name = "houses")
 public class House extends Accommodation{
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
+    private Long id;
+    @Column
     private int capacity;
+    @Column
     private int price;
+    @Column
     private int currentCapacity;
+    @Column
     private List<Booking> bookings;
 
     public House(String name, int capacity, int price) {
@@ -54,16 +65,21 @@ public class House extends Accommodation{
         return daysRoomIsBooked;
     }
 
-    public void addBooking(Booking booking){
+    @Override
+    public int getCurrentFreeCapacity() {
+        return this.currentCapacity;
+    }
+
+    private void addBooking(Booking booking){
         this.bookings.add(booking);
     }
 
-    public Booking newBooking(int year, int month, int day, int numberOfDays){
+    private Booking newBooking(int year, int month, int day, int numberOfDays){
         Booking booking = new Booking(year, month, day, numberOfDays);
         return booking;
     }
 
-    public boolean checkNotDoubleBooked(Booking possibleBooking){
+    private boolean checkNotDoubleBooked(Booking possibleBooking){
         boolean doubleBooked = false;
         for(Booking booking : this.bookings){
             for(LocalDate date : possibleBooking.getDaysBooked()){
@@ -73,15 +89,17 @@ public class House extends Accommodation{
         return doubleBooked;
     }
 
-    public void makeBooking(int year, int month, int day, int numberOfDays , int numberOfGuests){
+    public int makeBooking(int year, int month, int day, int numberOfDays , int numberOfGuests){
+        int numberOfGuestsToBook = numberOfGuests;
         if(numberOfGuests < this.currentCapacity){
             Booking possibleBooking = newBooking(year , month , day , numberOfDays );
             if (checkNotDoubleBooked(possibleBooking)){
-                return;
+                return 0;
             } else {
                 addBooking(possibleBooking);
             }
         }
+        return numberOfGuestsToBook;
     }
 
 }

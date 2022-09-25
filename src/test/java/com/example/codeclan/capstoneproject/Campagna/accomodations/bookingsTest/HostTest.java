@@ -1,9 +1,13 @@
-package com.example.codeclan.capstoneproject.Campagna.accomodations;
+package com.example.codeclan.capstoneproject.Campagna.accomodations.bookingsTest;
 
 import com.example.codeclan.capstoneproject.Campagna.accomodations.models.*;
 import com.example.codeclan.capstoneproject.Campagna.user.Host;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -17,6 +21,13 @@ public class HostTest {
     CampSite campSite;
     CampSitePitch campSitePitch;
     House house;
+    List<LocalDate> daysBooked;
+    LocalDate dayBooked1;
+    LocalDate dayBooked2;
+    LocalDate dayBooked3;
+    LocalDate dayBooked4;
+    LocalDate dayBooked5;
+
 
     @BeforeEach
     public void before(){
@@ -35,25 +46,24 @@ public class HostTest {
         host.addAccommodation(house);
         host.addAccommodation(campSite);
         host.addAccommodation(bAndB);
+        daysBooked = new ArrayList<>();
+        dayBooked1 = LocalDate.of(2020, 1, 10);
+        dayBooked2 = LocalDate.of(2020, 1, 11);
+        dayBooked3 = LocalDate.of(2020, 1, 12);
+        dayBooked4 = LocalDate.of(2020, 1, 13);
+        dayBooked5 = LocalDate.of(2020, 1, 14);
+        daysBooked.add(dayBooked1);
+        daysBooked.add(dayBooked2);
+        daysBooked.add(dayBooked3);
+        daysBooked.add(dayBooked4);
+        daysBooked.add(dayBooked5);
+        host.makeBooking(2020, 1, 10, 5, 2);
     }
 
     @Test
-    public void hostHasName(){
-        assertEquals("Bob", host.getName());
+    public void HostCanMakeBooking(){
+        assertEquals(daysBooked, host.getDaysBooked());
     }
 
-    @Test
-    public void hostHasInfo(){
-        assertEquals("Has a B&B, hotel, campsite and house to rent out", host.getInfo());
-    }
 
-    @Test
-    public void hostHasNoMoneyInWallet(){
-        assertEquals(0, host.getWallet());
-    }
-
-    @Test
-    public void hostHasFourAccommodations(){
-        assertEquals(4, host.getNumberOfAccommodations());
-    }
 }

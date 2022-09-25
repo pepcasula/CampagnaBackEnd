@@ -32,7 +32,7 @@ public class HouseAndCampTest {
         house = new House("House", 7, 100);
         campSitePitch = new CampSitePitch("A2", 3, 30);
         house.makeBooking(2020, 1, 10, 5, 2);
-        campSitePitch.makeBooking(2020, 1, 10, 5);
+        campSitePitch.makeBooking(2020, 1, 10, 5, 1);
         daysBooked = new ArrayList<>();
         dayBooked1 = LocalDate.of(2020, 1, 10);
         dayBooked2 = LocalDate.of(2020, 1, 11);
@@ -78,8 +78,8 @@ public class HouseAndCampTest {
     }
     @Test
     public void campSiteDoesNotDoubleBook(){
-        campSitePitch.makeBooking(2020, 12, 30, 4);
-        campSitePitch.makeBooking(2020, 12, 31, 3);
+        campSitePitch.makeBooking(2020, 12, 30, 4, 1);
+        campSitePitch.makeBooking(2020, 12, 31, 3, 1);
         assertEquals(overAllBooking, campSitePitch.getBookedDays());
     }
 

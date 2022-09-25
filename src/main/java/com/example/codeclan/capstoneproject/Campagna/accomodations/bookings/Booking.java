@@ -2,21 +2,40 @@ package com.example.codeclan.capstoneproject.Campagna.accomodations.bookings;
 
 import net.bytebuddy.asm.Advice;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table(name = "bookings")
 public class Booking {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
+    private Long id;
+    @Column
     private LocalDate startDate;
+    @Column
     private LocalDate endDate;
+    @Column
     private List<LocalDate> daysBooked;
+    @Column
     private int numberOfDays;
 
     public Booking(int year, int month, int day, int numberOfDays) {
         this.startDate = bookDate(year, month, day);
         this.daysBooked = setDaysBooked(numberOfDays);
         this.numberOfDays = numberOfDays;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public LocalDate getStartDate() {

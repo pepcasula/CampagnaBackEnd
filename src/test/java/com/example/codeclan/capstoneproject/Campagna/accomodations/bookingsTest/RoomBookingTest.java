@@ -29,7 +29,7 @@ public class RoomBookingTest {
     @BeforeEach
     public void before(){
         hotelRoom = new HotelRoom("1", RoomType.DOUBLE, 50);
-        hotelRoom.makeBooking(2020, 1, 10, 5);
+        hotelRoom.makeBooking(2020, 1, 10, 5, 2);
         daysBooked = new ArrayList<>();
         dayBooked1 = LocalDate.of(2020, 1, 10);
         dayBooked2 = LocalDate.of(2020, 1, 11);
@@ -69,27 +69,27 @@ public class RoomBookingTest {
 
     @Test
     public void roomCanBookMoreThanOneStretch(){
-        hotelRoom.makeBooking(2020, 12, 30, 4);
+        hotelRoom.makeBooking(2020, 12, 30, 4, 1);
         assertEquals(overAllBooking, hotelRoom.getBookedDays());
     }
 
     @Test
     public void roomHasTwoBooking(){
-        hotelRoom.makeBooking(2020, 12, 30, 4);
+        hotelRoom.makeBooking(2020, 12, 30, 4, 1);
         assertEquals(2, hotelRoom.getBookings().size());
     }
 
     @Test
     public void roomDoesNotDoubleBook(){
-        hotelRoom.makeBooking(2020, 12, 30, 4);
-        hotelRoom.makeBooking(2020, 12, 31, 3);
+        hotelRoom.makeBooking(2020, 12, 30, 4, 1);
+        hotelRoom.makeBooking(2020, 12, 31, 3, 1);
         assertEquals(overAllBooking, hotelRoom.getBookedDays());
     }
 
     @Test
     public void roomStillHasTwoBooking(){
-        hotelRoom.makeBooking(2020, 12, 30, 4);
-        hotelRoom.makeBooking(2020, 12, 31, 3);
+        hotelRoom.makeBooking(2020, 12, 30, 4, 1);
+        hotelRoom.makeBooking(2020, 12, 31, 3, 1);
         assertEquals(2, hotelRoom.getBookings().size());
     }
 }

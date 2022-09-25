@@ -1,11 +1,19 @@
 package com.example.codeclan.capstoneproject.Campagna.accomodations.models;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table(name = "hotels")
 public class Hotel extends Accommodation{
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
+    private Long id;
+    @Column
     private List<HotelRoom> rooms;
 
     public Hotel(String name) {
@@ -27,12 +35,15 @@ public class Hotel extends Accommodation{
     }
 
     @Override
-    public void makeBooking(int year, int month, int day, int numberOfDays, int numberOfGuests) {
+    public int makeBooking(int year, int month, int day, int numberOfDays, int numberOfGuests) {
+        int numberOfGuestsToBook = numberOfGuests;
         for (HotelRoom room : this.rooms){
-            if(room.isBigEnough(numberOfGuests)){
-                room.makeBooking(day, month, year, numberOfDays);
+            if(room.isBigEnough(numberOfGuests) || numberOfGuestsToBook != 0){
+                room.makeBooking(year, month, day, numberOfDays, numberOfGuestsToBook);
+                return numberOfGuestsToBook;
             }
         }
+        return 0;
     }
 
     @Override
@@ -42,5 +53,14 @@ public class Hotel extends Accommodation{
             daysBooked.addAll(room.getBookedDays());
         }
         return daysBooked;
+    }
+
+    @Override
+    public int getCurrentFreeCapacity() {
+        int totalCapacity = 0;
+        for(HotelRoom room : this.rooms){
+            totalCapacity += room.getCapacity();
+        }
+        return totalCapacity;
     }
 }

@@ -2,16 +2,27 @@ package com.example.codeclan.capstoneproject.Campagna.accomodations.models;
 
 import com.example.codeclan.capstoneproject.Campagna.accomodations.bookings.Booking;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
+@Entity
+@Table(name = "campsitePitches")
 public class CampSitePitch{
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
+    private Long id;
+    @Column
     private String name;
+    @Column
     private int capacity;
+    @Column
     private int price;
+    @Column
     private List<Booking> bookings;
 
     public CampSitePitch(String name, int capacity, int price){
@@ -76,12 +87,13 @@ public class CampSitePitch{
         return doubleBooked;
     }
 
-    public void makeBooking(int year, int month, int day, int numberOfDays){
+    public int makeBooking(int year, int month, int day, int numberOfDays, int numberOfGuests){
         Booking possibleBooking = newBooking(year , month , day , numberOfDays );
         if (checkNotDoubleBooked(possibleBooking)){
-            return;
+            return 0;
         } else {
             addBooking(possibleBooking);
+            return numberOfGuests;
         }
     }
 

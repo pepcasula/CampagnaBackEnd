@@ -1,9 +1,14 @@
 package com.example.codeclan.capstoneproject.Campagna.user;
 
+import javax.persistence.Column;
+
 public abstract class User {
 
+    @Column
     private String name;
+    @Column
     private int wallet;
+    @Column
     private String info;
 
     public User(String name, String info) {
