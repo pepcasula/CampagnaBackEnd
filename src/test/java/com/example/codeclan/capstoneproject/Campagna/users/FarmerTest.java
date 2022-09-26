@@ -126,21 +126,21 @@ public class FarmerTest {
 
     @Test
     public void canSetAndGetStock(){
-        farmer1.setStock(farmerStock1);
-        assertEquals(farmerStock1, farmer1.getStock());
+        farmer1.setFoods(farmerStock1);
+        assertEquals(farmerStock1, farmer1.getFoods());
     }
 
     @Test
     public void canCountStock(){
-        assertEquals(0, farmer2.countStock());
+        assertEquals(0, farmer2.countFoods());
     }
 
     @Test
     public void canClearStock(){
-        farmer2.setStock(farmerStock2);
-        assertEquals(2, farmer2.countStock());
-        farmer2.clearStock();
-        assertEquals(0, farmer2.countStock());
+        farmer2.setFoods(farmerStock2);
+        assertEquals(2, farmer2.countFoods());
+        farmer2.clearFoods();
+        assertEquals(0, farmer2.countFoods());
     }
 }
 

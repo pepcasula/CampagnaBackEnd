@@ -74,19 +74,19 @@ public class Farmer {
         this.info = info;
     }
 
-    public List<Food> getStock() {
+    public List<Food> getFoods() {
         return foods;
     }
 
-    public void setStock(List<Food> products) {
+    public void setFoods(List<Food> products) {
         this.foods = products;
     }
 
-    public int countStock(){
+    public int countFoods(){
         return this.foods.size();
     }
 
-    public void clearStock(){
+    public void clearFoods(){
         this.foods.clear();
     }
 }
