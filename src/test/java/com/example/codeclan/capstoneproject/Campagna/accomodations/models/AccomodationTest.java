@@ -5,7 +5,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class AccomodationTest {
 
@@ -23,7 +22,7 @@ public class AccomodationTest {
         bAndB = new BAndB("The Bear and Bee");
         campSite = new CampSite("The not just a field");
         hotel = new Hotel("Better than that B&B");
-        house = new House("It's almost like being at home", 5);
+        house = new House("It's almost like being at home", 5, 100);
         bAndBRoom = new BAndBRoom("1", RoomType.DOUBLE, 30);
         hotelRoom = new HotelRoom("20", RoomType.FAMILY, 50);
         campSitePitch = new CampSitePitch("A place to sleep", 3, 10);
