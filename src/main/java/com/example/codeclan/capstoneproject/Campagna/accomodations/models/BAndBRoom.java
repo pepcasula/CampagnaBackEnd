@@ -3,6 +3,8 @@ package com.example.codeclan.capstoneproject.Campagna.accomodations.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -33,6 +35,7 @@ public class BAndBRoom{
         this.roomType = roomType;
         this.price = price;
         this.bAndB = bAndB;
+        this.bookings = new ArrayList<>();
     }
 
     public Long getId() {
@@ -47,7 +50,7 @@ public class BAndBRoom{
         return this.price;
     }
 
-        public boolean isBigEnough(int numberOfGuests){
+    public boolean isBigEnough(int numberOfGuests){
         if(numberOfGuests < this.roomType.getCapacity()){
             return true;
         } else {
@@ -67,7 +70,7 @@ public class BAndBRoom{
     public boolean checkNotDoubleBooked(Booking possibleBooking){
         boolean doubleBooked = false;
         for(Booking booking : this.bookings){
-            for(DayBooked date : possibleBooking.getDaysBooked()){
+            for(LocalDate date : possibleBooking.getDaysBooked()){
                 doubleBooked = Stream.of(booking.getDaysBooked()).anyMatch(dayBooked -> dayBooked.contains(date));
             }
         }
@@ -82,5 +85,53 @@ public class BAndBRoom{
             this.bookings.add(possibleBooking);
             return this.roomType.getCapacity();
         }
+    }
+
+    public List<LocalDate> getBookedDays(){
+        List<LocalDate> daysRoomIsBooked = new ArrayList<>();
+        for(Booking booking : this.bookings){
+            daysRoomIsBooked.addAll(booking.getDaysBooked());
+        }
+        return daysRoomIsBooked;
+    }
+
+    public BAndB getbAndB() {
+        return bAndB;
+    }
+
+    public void setbAndB(BAndB bAndB) {
+        this.bAndB = bAndB;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public RoomType getRoomType() {
+        return roomType;
+    }
+
+    public void setRoomType(RoomType roomType) {
+        this.roomType = roomType;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public List<Booking> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(List<Booking> bookings) {
+        this.bookings = bookings;
     }
 }

@@ -4,6 +4,7 @@ import com.example.codeclan.capstoneproject.Campagna.user.Host;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,17 +69,18 @@ public class BAndB{
         this.id = id;
     }
 
-    public void makeBooking(int year, int month, int day, int numberOfDays, int numberOfGuests) {
+    public int makeBooking(int year, int month, int day, int numberOfDays, int numberOfGuests) {
         int numberOfGuestsToBook = numberOfGuests;
         for (BAndBRoom room : this.bandbRooms){
             if(room.isBigEnough(numberOfGuests) || numberOfGuestsToBook != 0){
                 room.makeBooking(year, month, day, numberOfDays, numberOfGuestsToBook);
             }
         }
+        return numberOfGuestsToBook;
     }
 
-    public List<DayBooked> getBookedDays() {
-        List<DayBooked> daysBooked = new ArrayList<>();
+    public List<LocalDate> getBookedDays() {
+        List<LocalDate> daysBooked = new ArrayList<>();
         for(BAndBRoom room : this.bandbRooms){
             daysBooked.addAll(room.getBookedDays());
         }
@@ -94,7 +96,7 @@ public class BAndB{
     }
 
     public boolean accommodationIsBigEnough(int numberOfGuests) {
-        if(getCurrentFreeCapacity() < numberOfGuests){
+        if(getCurrentFreeCapacity() > numberOfGuests){
             return true;
         } else {
             return false;

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 import java.awt.print.Book;
 
-@Component
+//@Component
 public class DataLoader implements ApplicationRunner {
 
     @Autowired
@@ -32,10 +32,9 @@ public class DataLoader implements ApplicationRunner {
         Host host = new Host("Bobbie", "Has a B&B, hotel, campsite and house to rent out");
         BAndB bAndB = new BAndB("Aa", host);
         BAndBRoom bAndBRoom = new BAndBRoom("12", RoomType.DOUBLE, 100, bAndB);
-        Booking booking = new Booking(2020, 10,11,5, bAndBRoom);
+        host.makeBooking(2022, 10, 4, 3, 2);
         hostRepository.save(host);
         bAndBRepository.save(bAndB);
         bAndBRoomRepository.save(bAndBRoom);
-        bookingRepository.save(booking);
     }
 }

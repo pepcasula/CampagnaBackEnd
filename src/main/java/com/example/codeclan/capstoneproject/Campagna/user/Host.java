@@ -5,6 +5,7 @@ import com.example.codeclan.capstoneproject.Campagna.accomodations.models.DayBoo
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -87,14 +88,14 @@ public class Host{
         for(BAndB accommodation : this.bAndBs){
             if (accommodation.accommodationIsBigEnough(numberOfGuests)){
                 while(numberOfGuestsNeedingToBeBooked > 0){
-                    accommodation.makeBooking(year, month, day, numberOfDays, numberOfGuests);
+                    numberOfGuestsNeedingToBeBooked -= accommodation.makeBooking(year, month, day, numberOfDays, numberOfGuests);
                 }
             }
         }
     }
 
-    public List<DayBooked> getDaysBooked(){
-        List<DayBooked> bookedDays = new ArrayList<>();
+    public List<LocalDate> getDaysBooked(){
+        List<LocalDate> bookedDays = new ArrayList<>();
         for(BAndB accommodation : this.bAndBs){
             bookedDays.addAll(accommodation.getBookedDays());
         }

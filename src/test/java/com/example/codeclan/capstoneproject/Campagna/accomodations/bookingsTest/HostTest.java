@@ -16,11 +16,6 @@ public class HostTest {
     Host host;
     BAndB bAndB;
     BAndBRoom bAndBRoom;
-    Hotel hotel;
-    HotelRoom hotelRoom;
-    CampSite campSite;
-    CampSitePitch campSitePitch;
-    House house;
     List<LocalDate> daysBooked;
     LocalDate dayBooked1;
     LocalDate dayBooked2;
@@ -33,7 +28,7 @@ public class HostTest {
     public void before(){
         host = new Host("Bob", "Has a B&B, hotel, campsite and house to rent out");
         bAndB = new BAndB("The Bear and Bee", host);
-        bAndBRoom = new BAndBRoom("1", RoomType.DOUBLE, 30, bAndB);
+        bAndBRoom = new BAndBRoom("1", RoomType.TRIPLE, 30, bAndB);
         bAndB.addRoom(bAndBRoom);
         host.addAccommodation(bAndB);
         daysBooked = new ArrayList<>();
@@ -48,6 +43,11 @@ public class HostTest {
         daysBooked.add(dayBooked4);
         daysBooked.add(dayBooked5);
         host.makeBooking(2020, 1, 10, 5, 2);
+    }
+
+    @Test
+    public void thereIsABooking(){
+
     }
 
     @Test

@@ -54,4 +54,16 @@ public class DayBooked {
     public void setDate( int year, int month, int day) {
         this.date = LocalDate.of(year, month, day);
     }
+
+    public int getDayOfMonth() {
+        return this.date.getDayOfMonth();
+    }
+
+    public int getMonthValue() {
+        return this.date.getMonthValue();
+    }
+
+    public int getYear() {
+        return this.date.getYear();
+    }
 }
