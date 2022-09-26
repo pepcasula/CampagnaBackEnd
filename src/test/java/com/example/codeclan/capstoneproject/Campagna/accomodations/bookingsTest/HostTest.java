@@ -14,7 +14,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class HostTest {
 
     Host host;
-    Host host1;
     BAndB bAndB;
     BAndBRoom bAndBRoom;
     Hotel hotel;
@@ -33,7 +32,6 @@ public class HostTest {
     @BeforeEach
     public void before(){
         host = new Host("Bob", "Has a B&B, hotel, campsite and house to rent out");
-        host1 = new Host("Bob", "Has a B&B, hotel, campsite and house to rent out");
         bAndB = new BAndB("The Bear and Bee");
         campSite = new CampSite("The not just a field");
         hotel = new Hotel("Better than that B&B");
