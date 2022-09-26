@@ -21,6 +21,10 @@ public class BAndB extends Accommodation{
         this.rooms = new ArrayList<>();
     }
 
+    public BAndB(){
+
+    }
+
     @Override
     public int makeBooking(int year, int month, int day, int numberOfDays, int numberOfGuests) {
         int numberOfGuestsToBook = numberOfGuests;
@@ -49,6 +53,15 @@ public class BAndB extends Accommodation{
             totalCapacity += room.getCapacity();
         }
         return totalCapacity;
+    }
+
+    @Override
+    public boolean accommodationIsBigEnough(int numberOfGuests) {
+        if(getCurrentFreeCapacity() < numberOfGuests){
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public int numberOfRooms(){

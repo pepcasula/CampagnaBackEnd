@@ -10,7 +10,6 @@ import java.util.stream.Stream;
 
 public abstract class Room {
 
-    // test comment
     @Column
     private String name;
     @Column
@@ -19,6 +18,9 @@ public abstract class Room {
     private int price;
     @Column
     private List<Booking> bookings;
+
+    public Room() {
+    }
 
     public Room(String name, RoomType roomType, int price) {
         this.name = name;

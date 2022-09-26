@@ -33,6 +33,8 @@ public class House extends Accommodation{
         this.bookings = new ArrayList<>();
     }
 
+
+
     public int getCapacity() {
         return capacity;
     }
@@ -68,6 +70,14 @@ public class House extends Accommodation{
     @Override
     public int getCurrentFreeCapacity() {
         return this.currentCapacity;
+    }
+
+    public boolean accommodationIsBigEnough(int numberOfGuests) {
+        if(getCurrentFreeCapacity() < numberOfGuests){
+            return true;
+        } else {
+            return false;
+        }
     }
 
     private void addBooking(Booking booking){

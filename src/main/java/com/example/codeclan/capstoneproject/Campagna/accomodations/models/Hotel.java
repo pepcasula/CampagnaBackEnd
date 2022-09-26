@@ -46,6 +46,7 @@ public class Hotel extends Accommodation{
         return 0;
     }
 
+
     @Override
     public List<LocalDate> getBookedDays() {
         List<LocalDate> daysBooked = new ArrayList<>();
@@ -63,4 +64,13 @@ public class Hotel extends Accommodation{
         }
         return totalCapacity;
     }
+
+    public boolean accommodationIsBigEnough(int numberOfGuests) {
+        if(getCurrentFreeCapacity() < numberOfGuests){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }

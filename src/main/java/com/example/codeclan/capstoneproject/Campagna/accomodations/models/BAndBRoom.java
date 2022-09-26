@@ -9,6 +9,7 @@ public class BAndBRoom extends Room{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Long id;
+
     public BAndBRoom(String name, RoomType roomType, int price) {
         super(name, roomType, price);
     }

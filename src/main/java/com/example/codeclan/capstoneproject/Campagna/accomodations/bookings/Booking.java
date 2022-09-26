@@ -24,6 +24,9 @@ public class Booking {
     @Column
     private int numberOfDays;
 
+    public Booking() {
+    }
+
     public Booking(int year, int month, int day, int numberOfDays) {
         this.startDate = bookDate(year, month, day);
         this.daysBooked = setDaysBooked(numberOfDays);

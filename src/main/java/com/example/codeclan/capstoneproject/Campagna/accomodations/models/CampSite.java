@@ -21,6 +21,8 @@ public class CampSite extends Accommodation{
         this.sites = new ArrayList<>();
     }
 
+
+
     @Override
     public int makeBooking(int year, int month, int day, int numberOfDays, int numberOfGuests) {
         int numberOfGuestsToBook = numberOfGuests;
@@ -32,6 +34,8 @@ public class CampSite extends Accommodation{
         }
         return 0;
     }
+
+
 
     @Override
     public List<LocalDate> getBookedDays() {
@@ -49,6 +53,14 @@ public class CampSite extends Accommodation{
             totalCapacity += campPitch.getCapacity();
         }
         return totalCapacity;
+    }
+
+    public boolean accommodationIsBigEnough(int numberOfGuests) {
+        if(getCurrentFreeCapacity() < numberOfGuests){
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public int numberOfSites(){

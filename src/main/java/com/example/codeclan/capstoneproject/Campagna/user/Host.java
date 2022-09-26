@@ -33,11 +33,14 @@ public class Host extends User{
         this.accommodations.add(accommodation);
     }
 
+
     public void makeBooking(int year, int month, int day, int numberOfDays, int numberOfGuests){
         int numberOfGuestsNeedingToBeBooked = numberOfGuests;
         for(Accommodation accommodation : this.accommodations){
-            while(numberOfGuestsNeedingToBeBooked > 0){
-                numberOfGuestsNeedingToBeBooked -= accommodation.makeBooking(year, month, day, numberOfDays, numberOfGuests);
+            if (accommodation.accommodationIsBigEnough(numberOfGuests)){
+                while(numberOfGuestsNeedingToBeBooked > 0){
+                    numberOfGuestsNeedingToBeBooked -= accommodation.makeBooking(year, month, day, numberOfDays, numberOfGuests);
+                }
             }
         }
     }

@@ -32,6 +32,9 @@ public class CampSitePitch{
         this.bookings = new ArrayList<>();
     }
 
+    public CampSitePitch() {
+    }
+
     public String getName() {
         return name;
     }
