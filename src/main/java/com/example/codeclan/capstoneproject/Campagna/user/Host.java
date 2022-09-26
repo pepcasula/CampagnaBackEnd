@@ -5,13 +5,12 @@ import com.example.codeclan.capstoneproject.Campagna.accomodations.models.Accomm
 import java.util.ArrayList;
 import java.util.List;
 
-public class Host extends User{
+public class Host {
 
     private List<Accommodation> accommodations;
     //private List<Booking> bookings;
 
     public Host(String name, String info) {
-        super(name, info);
         this.accommodations = new ArrayList<>();
     }
 

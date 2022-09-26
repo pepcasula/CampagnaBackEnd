@@ -1,19 +1,72 @@
 package com.example.codeclan.capstoneproject.Campagna.products;
 
 import com.example.codeclan.capstoneproject.Campagna.user.Farmer;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-public class Food extends Product{
+import javax.persistence.*;
 
+@Entity
+@Table(name="foods")
+public class Food {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
+
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "price")
+    private int price;
+
+    @Column(name = "foodtype")
     private FoodType foodType;
+
+    @Column(name = "size")
     private int sizePerUnit;
+
+    @Column(name = "description")
+    private String description;
+
+    @ManyToOne
+    @JoinColumn(name = "farmer_id", nullable = false)
     private Farmer farmer;
 
-
     public Food(String name, int price, FoodType foodType, int sizePerUnit, String description, Farmer farmer) {
-        super(name, price, description);
+        this.name = name;
+        this.price = price;
+        this.description = description;
         this.foodType = foodType;
         this.sizePerUnit = sizePerUnit;
         this.farmer = farmer;
+    }
+
+    public Food() {
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public FoodType getFoodType() {

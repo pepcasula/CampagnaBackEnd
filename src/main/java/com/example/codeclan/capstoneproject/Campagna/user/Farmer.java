@@ -1,32 +1,92 @@
 package com.example.codeclan.capstoneproject.Campagna.user;
 
 import com.example.codeclan.capstoneproject.Campagna.products.Food;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Farmer extends User{
+@Entity
+@Table(name = "farmers")
+public class Farmer {
 
-    private List<Food> farmerStock;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
+
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "wallet")
+    private int wallet;
+
+    @Column(name = "info")
+    private String info;
+
+    @OneToMany(mappedBy = "farmer")
+    @JsonIgnoreProperties({"farmer"})
+    private List<Food> foods;
+
 
     public Farmer(String name, String info) {
-        super(name, info);
-        this.farmerStock = new ArrayList<>();
+        this.name = name;
+        this.wallet = 0;
+        this.info = info;
+        this.foods = new ArrayList<>();
+
+    }
+
+    public Farmer() {
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getWallet() {
+        return wallet;
+    }
+
+    public void setWallet(int wallet) {
+        this.wallet = wallet;
+    }
+
+    public void sell(int amount) {
+        this.wallet += amount;
+    }
+
+    public void buy(int amount){
+        this.wallet -= amount;
+    }
+
+    public String getInfo() {
+        return info;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
     }
 
     public List<Food> getStock() {
-        return farmerStock;
+        return foods;
     }
 
     public void setStock(List<Food> products) {
-        this.farmerStock = products;
+        this.foods = products;
     }
 
     public int countStock(){
-        return this.farmerStock.size();
+        return this.foods.size();
     }
 
     public void clearStock(){
-        this.farmerStock.clear();
+        this.foods.clear();
     }
 }
