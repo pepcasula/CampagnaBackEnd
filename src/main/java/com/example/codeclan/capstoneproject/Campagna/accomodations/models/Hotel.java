@@ -13,7 +13,7 @@ public class Hotel extends Accommodation{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Long id;
-    @Column
+    @OneToMany
     private List<HotelRoom> rooms;
 
     public Hotel(String name) {

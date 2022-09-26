@@ -3,6 +3,7 @@ package com.example.codeclan.capstoneproject.Campagna.accomodations.models;
 import com.example.codeclan.capstoneproject.Campagna.accomodations.bookings.Booking;
 
 import javax.persistence.Column;
+import javax.persistence.OneToMany;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +17,7 @@ public abstract class Room {
     private RoomType roomType;
     @Column
     private int price;
-    @Column
+    @OneToMany
     private List<Booking> bookings;
 
     public Room() {

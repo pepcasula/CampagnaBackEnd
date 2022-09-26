@@ -22,7 +22,7 @@ public class House extends Accommodation{
     private int price;
     @Column
     private int currentCapacity;
-    @Column
+    @OneToMany
     private List<Booking> bookings;
 
     public House(String name, int capacity, int price) {

@@ -1,7 +1,7 @@
 package com.example.codeclan.capstoneproject.Campagna.user;
 
 import com.example.codeclan.capstoneproject.Campagna.accomodations.models.Accommodation;
-import org.springframework.stereotype.Component;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -17,7 +17,7 @@ public class Host extends User{
     @Column(name = "id")
     private Long id;
 
-    @Column
+    @OneToMany
     private List<Accommodation> accommodations;
 
     public Host(String name, String info) {
