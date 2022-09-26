@@ -1,61 +1,98 @@
 package com.example.codeclan.capstoneproject.Campagna.accomodations.models;
 
+import com.example.codeclan.capstoneproject.Campagna.user.Host;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "bAndBs")
-public class BAndB extends Accommodation{
+@Table(name = "BAndBs")
+public class BAndB{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Long id;
-    @OneToMany
-    private List<BAndBRoom> rooms;
+    @OneToMany(mappedBy = "bAndB")
+    @JsonIgnoreProperties({"bAndB"})
+    private List<BAndBRoom> bandbRooms;
+    @Column
+    private String name;
 
-    public BAndB(String name) {
-        super(name);
-        this.rooms = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name = "host_id", referencedColumnName = "id")
+    @JsonIgnoreProperties({"bAndB"})
+    private Host host;
+
+    public BAndB(String name, Host host) {
+        this.name = name;
+        this.host = host;
+        this.bandbRooms = new ArrayList<>();
     }
 
     public BAndB(){
 
     }
 
-    @Override
-    public int makeBooking(int year, int month, int day, int numberOfDays, int numberOfGuests) {
-        int numberOfGuestsToBook = numberOfGuests;
-        for (BAndBRoom room : this.rooms){
-            if(room.isBigEnough(numberOfGuests) || numberOfGuestsToBook != 0){
-                room.makeBooking(year, month, day, numberOfDays, numberOfGuestsToBook);
-                return numberOfGuestsToBook;
-            }
-        }
-        return 0;
+    public List<BAndBRoom> getBandbRooms() {
+        return bandbRooms;
     }
 
-    @Override
-    public List<LocalDate> getBookedDays() {
-        List<LocalDate> daysBooked = new ArrayList<>();
-        for(BAndBRoom room : this.rooms){
+    public void setBandbRooms(List<BAndBRoom> bandbRooms) {
+        this.bandbRooms = bandbRooms;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Host getHost() {
+        return host;
+    }
+
+    public void setHost(Host host) {
+        this.host = host;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void makeBooking(int year, int month, int day, int numberOfDays, int numberOfGuests) {
+        int numberOfGuestsToBook = numberOfGuests;
+        for (BAndBRoom room : this.bandbRooms){
+            if(room.isBigEnough(numberOfGuests) || numberOfGuestsToBook != 0){
+                room.makeBooking(year, month, day, numberOfDays, numberOfGuestsToBook);
+            }
+        }
+    }
+
+    public List<DayBooked> getBookedDays() {
+        List<DayBooked> daysBooked = new ArrayList<>();
+        for(BAndBRoom room : this.bandbRooms){
             daysBooked.addAll(room.getBookedDays());
         }
         return daysBooked;
     }
 
-    @Override
     public int getCurrentFreeCapacity() {
         int totalCapacity = 0;
-        for(BAndBRoom room : this.rooms){
+        for(BAndBRoom room : this.bandbRooms){
             totalCapacity += room.getCapacity();
         }
         return totalCapacity;
     }
 
-    @Override
     public boolean accommodationIsBigEnough(int numberOfGuests) {
         if(getCurrentFreeCapacity() < numberOfGuests){
             return true;
@@ -65,16 +102,16 @@ public class BAndB extends Accommodation{
     }
 
     public int numberOfRooms(){
-        return this.rooms.size();
+        return this.bandbRooms.size();
     }
 
     public void addRoom(BAndBRoom bAndB){
-        this.rooms.add(bAndB);
+        this.bandbRooms.add(bAndB);
     }
 
-    public int getRoomPrice(BAndBRoom bAndBRoom){
-        return bAndBRoom.getPrice();
-    }
+//    public int getRoomPrice(BAndBRoom bAndBRoom){
+//        return bAndBRoom.getPrice();
+//    }
 
 
 }

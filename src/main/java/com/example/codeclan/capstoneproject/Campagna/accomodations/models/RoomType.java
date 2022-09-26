@@ -5,7 +5,9 @@ public enum RoomType {
     DOUBLE(2),
     TWIN(2),
     TRIPLE(3),
-    FAMILY(4);
+    FAMILY(4),
+    CAMPSITEPITCH(3),
+    HOUSE(7);
 
     private final int capacity;
 

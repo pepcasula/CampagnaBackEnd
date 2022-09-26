@@ -1,6 +1,6 @@
-package com.example.codeclan.capstoneproject.Campagna.accomodations.bookings;
+package com.example.codeclan.capstoneproject.Campagna.accomodations.models;
 
-import net.bytebuddy.asm.Advice;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -19,19 +19,45 @@ public class Booking {
     private LocalDate startDate;
     @Column
     private LocalDate endDate;
-    @Column
-    private List<LocalDate> daysBooked;
+    @OneToMany(mappedBy = "booking", fetch = FetchType.LAZY)
+    @JsonIgnoreProperties({"booking"})
+    private List<DayBooked> daysBooked;
     @Column
     private int numberOfDays;
+    @ManyToOne
+    @JsonIgnoreProperties({"booking"})
+    @JoinColumn(name = "bandbRoom_id", nullable = false)
+    private BAndBRoom bandbRoom;
 
     public Booking() {
     }
 
-    public Booking(int year, int month, int day, int numberOfDays) {
+    public Booking(int year, int month, int day, int numberOfDays, BAndBRoom bandbRoom) {
         this.startDate = bookDate(year, month, day);
-        this.daysBooked = setDaysBooked(numberOfDays);
+//        this.daysBooked = setDaysBooked(numberOfDays);
         this.numberOfDays = numberOfDays;
+        this.daysBooked = new ArrayList<>();
+        this.bandbRoom = bandbRoom;
     }
+
+    public void setDaysBooked(List<DayBooked> daysBooked) {
+        this.daysBooked = daysBooked;
+    }
+
+    public void makeDayBooked(int year, int month, int day, int numberOfDays){
+        for(int i = 0; i < numberOfDays; i++){
+            DayBooked dayBooked = new DayBooked(this, year, month, day);
+            daysBooked.add(dayBooked);
+        }
+    }
+
+//    public Room getRoom() {
+//        return room;
+//    }
+//
+//    public void setRoom(Room room) {
+//        this.room = room;
+//    }
 
     public Long getId() {
         return id;
@@ -57,7 +83,7 @@ public class Booking {
         this.endDate = endDate;
     }
 
-    public List<LocalDate> getDaysBooked() {
+    public List<DayBooked> getDaysBooked() {
         return daysBooked;
     }
 
