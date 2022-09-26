@@ -13,7 +13,7 @@ public class CampSite extends Accommodation{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Long id;
-    @Column
+    @OneToMany
     private List<CampSitePitch> sites;
 
     public CampSite(String name) {

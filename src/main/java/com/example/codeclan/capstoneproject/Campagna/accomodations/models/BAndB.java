@@ -13,7 +13,7 @@ public class BAndB extends Accommodation{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Long id;
-    @Column
+    @OneToMany
     private List<BAndBRoom> rooms;
 
     public BAndB(String name) {
