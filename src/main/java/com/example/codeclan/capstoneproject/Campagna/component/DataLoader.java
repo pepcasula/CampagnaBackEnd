@@ -38,7 +38,6 @@ public class DataLoader implements ApplicationRunner {
         DayBooked dayBooked2 = new DayBooked(possibleBooking, 2022, 8, 5);
         DayBooked dayBooked3 = new DayBooked(possibleBooking, 2022, 8, 6);
         DayBooked dayBooked4 = new DayBooked(possibleBooking, 2022, 8, 7);
-        hostRepository.save(host);
         bAndBRepository.save(bAndB);
         bAndBRoomRepository.save(bAndBRoom);
         bookingRepository.save(possibleBooking);
