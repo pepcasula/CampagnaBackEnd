@@ -1,7 +1,7 @@
 package com.example.codeclan.capstoneproject.Campagna.controllers;
 
-import com.example.codeclan.capstoneproject.Campagna.accomodations.models.BAndB;
-import com.example.codeclan.capstoneproject.Campagna.repositories.BAndBRepository;
+import com.example.codeclan.capstoneproject.Campagna.accomodations.bookings.BandB;
+import com.example.codeclan.capstoneproject.Campagna.repositories.BandBRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,18 +13,18 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-public class BAndBController {
+public class BandBController {
 
     @Autowired
-    BAndBRepository bAndBRepository;
+    BandBRepository bAndBRepository;
 
     @GetMapping(value = "/bandbs")
-    public ResponseEntity<List<BAndB>> getAllBAndBs(){
+    public ResponseEntity<List<BandB>> getAllBAndBs(){
         return new ResponseEntity<>(bAndBRepository.findAll(), HttpStatus.OK);
     }
 
     @PostMapping(value = "/bandbs")
-    public ResponseEntity<BAndB> createBAndB(@RequestBody BAndB bAndB){
+    public ResponseEntity<BandB> createBAndB(@RequestBody BandB bAndB){
         bAndBRepository.save(bAndB);
         return new ResponseEntity<>(bAndB, HttpStatus.CREATED);
     }

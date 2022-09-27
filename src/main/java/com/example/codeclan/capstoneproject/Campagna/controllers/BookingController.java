@@ -1,6 +1,6 @@
 package com.example.codeclan.capstoneproject.Campagna.controllers;
 
-import com.example.codeclan.capstoneproject.Campagna.accomodations.models.Booking;
+import com.example.codeclan.capstoneproject.Campagna.accomodations.bookings.Booking;
 import com.example.codeclan.capstoneproject.Campagna.repositories.BookingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,9 +25,9 @@ public class BookingController {
     }
 
     @PostMapping(value = "/bookings")
-    public ResponseEntity<Booking> createBooking(@RequestBody Booking booking){
+    public ResponseEntity<String> createBooking(@RequestBody Booking booking){
         bookingRepository.save(booking);
-        return new ResponseEntity<>(booking, HttpStatus.CREATED);
+        return new ResponseEntity<>(booking.toString(), HttpStatus.CREATED);
     }
 
 }
