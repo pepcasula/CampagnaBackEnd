@@ -5,12 +5,10 @@ import com.example.codeclan.capstoneproject.Campagna.repositories.BandBRepositor
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class BandBController {
@@ -21,6 +19,11 @@ public class BandBController {
     @GetMapping(value = "/bandbs")
     public ResponseEntity<List<BandB>> getAllBAndBs(){
         return new ResponseEntity<>(bAndBRepository.findAll(), HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/bandbs/{id}")
+    public ResponseEntity<Optional<BandB>> getBandBById(@PathVariable Long id){
+        return new ResponseEntity<>(bAndBRepository.findById(id), HttpStatus.OK);
     }
 
     @PostMapping(value = "/bandbs")

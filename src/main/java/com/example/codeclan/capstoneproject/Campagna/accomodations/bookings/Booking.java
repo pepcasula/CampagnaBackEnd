@@ -22,13 +22,13 @@ public class Booking {
     @Column
     private LocalDate endDate;
     @Column
-    private Boolean aBoolean;
+    private Boolean status;
 
     public Booking(BandB bandb, LocalDate startDate, LocalDate endDate) {
         this.bandb = bandb;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.aBoolean = false;
+        this.status = false;
     }
 
     public Booking() {
@@ -66,11 +66,11 @@ public class Booking {
         this.bandb = bandb;
     }
 
-    public Boolean getaBoolean() {
-        return aBoolean;
+    public Boolean getStatus() {
+        return status;
     }
 
-    public void setaBoolean(Boolean aBoolean) {
-        this.aBoolean = aBoolean;
+    public void setStatus(Boolean status) {
+        this.status = status;
     }
 }
