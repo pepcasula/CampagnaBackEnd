@@ -17,7 +17,7 @@ public class DayBooked {
 
     @ManyToOne
     @JoinColumn(name = "booking_id", nullable = false)
-    @JsonIgnoreProperties({"dayBooked"})
+    @JsonIgnoreProperties({"daysBooked"})
     private Booking booking;
 
     @Column

@@ -25,11 +25,6 @@ public class Host{
     private int wallet;
     @Column
     private String info;
-
-//    @OneToMany(mappedBy = "host", fetch = FetchType.LAZY)
-//    @JsonIgnoreProperties({"host"})
-//    private List<Accommodation> accommodations;
-
     @OneToMany(mappedBy = "host")
     @JsonIgnoreProperties({"host"})
     private List<BAndB> bAndBs;
@@ -39,6 +34,9 @@ public class Host{
         this.info = info;
         this.wallet = 0;
         this.bAndBs = new ArrayList<>();
+    }
+
+    public Host() {
     }
 
     public Long getId() {
@@ -95,19 +93,19 @@ public class Host{
         }
     }
 
-    public List<LocalDate> getDaysBooked(){
-        List<LocalDate> bookedDays = new ArrayList<>();
-        for(BAndB accommodation : this.bAndBs){
-            bookedDays.addAll(accommodation.getBookedDays());
-        }
-        return bookedDays;
-    }
+//    public List<LocalDate> getDaysBooked(){
+//        List<LocalDate> bookedDays = new ArrayList<>();
+//        for(BAndB accommodation : this.bAndBs){
+//            bookedDays.addAll(accommodation.getBookedDays());
+//        }
+//        return bookedDays;
+//    }
 
-    public List<Booking> getBookings() {
-        List<Booking> bookings = new ArrayList<>();
-        for(BAndB bAndB : this.bAndBs){
-            bookings.addAll(bAndB.getBooking());
-        }
-        return bookings;
-    }
+//    public List<Booking> getBookings() {
+//        List<Booking> bookings = new ArrayList<>();
+//        for(BAndB bAndB : this.bAndBs){
+//            bookings.addAll(bAndB.getBooking());
+//        }
+//        return bookings;
+//    }
 }

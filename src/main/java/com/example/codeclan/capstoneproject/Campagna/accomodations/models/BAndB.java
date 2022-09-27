@@ -21,10 +21,9 @@ public class BAndB{
     private List<BAndBRoom> bandbRooms;
     @Column
     private String name;
-
     @ManyToOne
     @JoinColumn(name = "host_id", referencedColumnName = "id")
-    @JsonIgnoreProperties({"bAndB"})
+    @JsonIgnoreProperties({"bAndBs"})
     private Host host;
 
     public BAndB(String name, Host host) {
@@ -79,15 +78,15 @@ public class BAndB{
         return numberOfGuestsToBook;
     }
 
-    public List<LocalDate> getBookedDays() {
-        List<LocalDate> daysBooked = new ArrayList<>();
-        for(BAndBRoom room : this.bandbRooms){
-            daysBooked.addAll(room.getBookedDays());
-        }
-        return daysBooked;
-    }
+//    public List<LocalDate> getBookedDays() {
+//        List<LocalDate> daysBooked = new ArrayList<>();
+//        for(BAndBRoom room : this.bandbRooms){
+//            daysBooked.addAll(room.getBookedDays());
+//        }
+//        return daysBooked;
+//    }
 
-    public int getCurrentFreeCapacity() {
+    private int getCurrentFreeCapacity() {
         int totalCapacity = 0;
         for(BAndBRoom room : this.bandbRooms){
             totalCapacity += room.getCapacity();
@@ -111,13 +110,13 @@ public class BAndB{
         this.bandbRooms.add(bAndB);
     }
 
-    public List<Booking> getBooking() {
-        List<Booking> bookings = new ArrayList<>();
-        for(BAndBRoom room : this.bandbRooms){
-            bookings.addAll(room.getBookings());
-        }
-        return bookings;
-    }
+//    public List<Booking> getBooking() {
+//        List<Booking> bookings = new ArrayList<>();
+//        for(BAndBRoom room : this.bandbRooms){
+//            bookings.addAll(room.getBookings());
+//        }
+//        return bookings;
+//    }
 
 //    public int getRoomPrice(BAndBRoom bAndBRoom){
 //        return bAndBRoom.getPrice();

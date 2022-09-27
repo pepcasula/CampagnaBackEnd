@@ -21,7 +21,7 @@ public class BAndBRoom{
     @Column
     private Long id;
     @ManyToOne
-    @JsonIgnoreProperties({"bandbRoom"})
+    @JsonIgnoreProperties({"bandbRooms"})
     @JoinColumn(name = "bandb_id", nullable = false)
     private BAndB bAndB;
     @Column
@@ -42,7 +42,8 @@ public class BAndBRoom{
         this.bookings = new ArrayList<>();
     }
 
-
+    public BAndBRoom() {
+    }
 
     public Long getId() {
         return id;
@@ -93,13 +94,13 @@ public class BAndBRoom{
         }
     }
 
-    public List<LocalDate> getBookedDays(){
-        List<LocalDate> daysRoomIsBooked = new ArrayList<>();
-        for(Booking booking : this.bookings){
-            daysRoomIsBooked.addAll(booking.getDaysBooked());
-        }
-        return daysRoomIsBooked;
-    }
+//    public List<LocalDate> getBookedDays(){
+//        List<LocalDate> daysRoomIsBooked = new ArrayList<>();
+//        for(Booking booking : this.bookings){
+//            daysRoomIsBooked.addAll(booking.getDaysBooked());
+//        }
+//        return daysRoomIsBooked;
+//    }
 
     public BAndB getbAndB() {
         return bAndB;

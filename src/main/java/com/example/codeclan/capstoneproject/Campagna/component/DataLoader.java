@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 import java.awt.print.Book;
 import java.util.List;
 
-@Component
+//@Component
 public class DataLoader implements ApplicationRunner {
 
     @Autowired
@@ -30,14 +30,15 @@ public class DataLoader implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args){
-        Host host = new Host("Bobbie", "Has a B&B, hotel, campsite and house to rent out");
-        BAndB bAndB = new BAndB("That one", host);
+        Host host = new Host("Bobbie", "Has a B&B");
+        BAndB bAndB = new BAndB("That B&B", host);
         BAndBRoom bAndBRoom = new BAndBRoom("12", RoomType.TRIPLE, 100, bAndB);
         Booking possibleBooking = new Booking(2022, 8, 4, 3, bAndBRoom);
         DayBooked dayBooked1 = new DayBooked(possibleBooking, 2022, 8, 4);
         DayBooked dayBooked2 = new DayBooked(possibleBooking, 2022, 8, 5);
         DayBooked dayBooked3 = new DayBooked(possibleBooking, 2022, 8, 6);
         DayBooked dayBooked4 = new DayBooked(possibleBooking, 2022, 8, 7);
+        hostRepository.save(host);
         bAndBRepository.save(bAndB);
         bAndBRoomRepository.save(bAndBRoom);
         bookingRepository.save(possibleBooking);

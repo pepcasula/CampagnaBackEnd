@@ -86,9 +86,9 @@ public class Booking {
         return daysThatHaveBeenBooked;
     }
 
-    public List<DayBooked> getDaysBookedToBeSaved() {
-        return this.daysBooked;
-    }
+//    public List<DayBooked> getDaysBookedToBeSaved() {
+//        return this.daysBooked;
+//    }
 
     public boolean isItTheLastDayOfFeb(int day, int month){
         if(month == 2){
