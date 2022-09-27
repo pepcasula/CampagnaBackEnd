@@ -111,6 +111,14 @@ public class BAndB{
         this.bandbRooms.add(bAndB);
     }
 
+    public List<Booking> getBooking() {
+        List<Booking> bookings = new ArrayList<>();
+        for(BAndBRoom room : this.bandbRooms){
+            bookings.addAll(room.getBookings());
+        }
+        return bookings;
+    }
+
 //    public int getRoomPrice(BAndBRoom bAndBRoom){
 //        return bAndBRoom.getPrice();
 //    }

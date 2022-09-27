@@ -1,6 +1,7 @@
 package com.example.codeclan.capstoneproject.Campagna.user;
 
 import com.example.codeclan.capstoneproject.Campagna.accomodations.models.BAndB;
+import com.example.codeclan.capstoneproject.Campagna.accomodations.models.Booking;
 import com.example.codeclan.capstoneproject.Campagna.accomodations.models.DayBooked;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -102,4 +103,11 @@ public class Host{
         return bookedDays;
     }
 
+    public List<Booking> getBookings() {
+        List<Booking> bookings = new ArrayList<>();
+        for(BAndB bAndB : this.bAndBs){
+            bookings.addAll(bAndB.getBooking());
+        }
+        return bookings;
+    }
 }

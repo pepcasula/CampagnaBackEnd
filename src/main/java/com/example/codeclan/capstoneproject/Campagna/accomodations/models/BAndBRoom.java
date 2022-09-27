@@ -1,6 +1,9 @@
 package com.example.codeclan.capstoneproject.Campagna.accomodations.models;
 
+import com.example.codeclan.capstoneproject.Campagna.repositories.BookingRepository;
+import com.example.codeclan.capstoneproject.Campagna.repositories.DayBookedRepository;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -11,6 +14,7 @@ import java.util.stream.Stream;
 @Entity
 @Table(name = "bandbRooms")
 public class BAndBRoom{
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,6 +41,8 @@ public class BAndBRoom{
         this.bAndB = bAndB;
         this.bookings = new ArrayList<>();
     }
+
+
 
     public Long getId() {
         return id;
@@ -128,7 +134,7 @@ public class BAndBRoom{
     }
 
     public List<Booking> getBookings() {
-        return bookings;
+        return this.bookings;
     }
 
     public void setBookings(List<Booking> bookings) {

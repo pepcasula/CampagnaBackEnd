@@ -1,6 +1,9 @@
 package com.example.codeclan.capstoneproject.Campagna.accomodations.models;
 
+import com.example.codeclan.capstoneproject.Campagna.repositories.BookingRepository;
+import com.example.codeclan.capstoneproject.Campagna.repositories.DayBookedRepository;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -17,8 +20,6 @@ public class Booking {
     private Long id;
     @Column
     private LocalDate startDate;
-//    @Column
-//    private DayBooked endDate;
     @OneToMany(mappedBy = "booking", fetch = FetchType.LAZY)
     @JsonIgnoreProperties({"booking"})
     private List<DayBooked> daysBooked;
