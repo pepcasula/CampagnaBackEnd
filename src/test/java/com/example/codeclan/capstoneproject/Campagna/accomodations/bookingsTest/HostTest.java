@@ -16,11 +16,6 @@ public class HostTest {
     Host host;
     BAndB bAndB;
     BAndBRoom bAndBRoom;
-    Hotel hotel;
-    HotelRoom hotelRoom;
-    CampSite campSite;
-    CampSitePitch campSitePitch;
-    House house;
     List<LocalDate> daysBooked;
     LocalDate dayBooked1;
     LocalDate dayBooked2;
@@ -32,19 +27,9 @@ public class HostTest {
     @BeforeEach
     public void before(){
         host = new Host("Bob", "Has a B&B, hotel, campsite and house to rent out");
-        bAndB = new BAndB("The Bear and Bee");
-        campSite = new CampSite("The not just a field");
-        hotel = new Hotel("Better than that B&B");
-        house = new House("It's almost like being at home", 5, 100);
-        bAndBRoom = new BAndBRoom("1", RoomType.DOUBLE, 30);
-        hotelRoom = new HotelRoom("20", RoomType.FAMILY, 50);
-        campSitePitch = new CampSitePitch("A place to sleep", 3, 10);
+        bAndB = new BAndB("The Bear and Bee", host);
+        bAndBRoom = new BAndBRoom("1", RoomType.TRIPLE, 30, bAndB);
         bAndB.addRoom(bAndBRoom);
-        hotel.addRoom(hotelRoom);
-        campSite.addCampSitePitch(campSitePitch);
-        host.addAccommodation(hotel);
-        host.addAccommodation(house);
-        host.addAccommodation(campSite);
         host.addAccommodation(bAndB);
         daysBooked = new ArrayList<>();
         dayBooked1 = LocalDate.of(2020, 1, 10);
@@ -58,6 +43,11 @@ public class HostTest {
         daysBooked.add(dayBooked4);
         daysBooked.add(dayBooked5);
         host.makeBooking(2020, 1, 10, 5, 2);
+    }
+
+    @Test
+    public void thereIsABooking(){
+
     }
 
     @Test

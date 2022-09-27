@@ -1,6 +1,9 @@
-package com.example.codeclan.capstoneproject.Campagna.accomodations.bookings;
+package com.example.codeclan.capstoneproject.Campagna.accomodations.models;
 
-import net.bytebuddy.asm.Advice;
+import com.example.codeclan.capstoneproject.Campagna.repositories.BookingRepository;
+import com.example.codeclan.capstoneproject.Campagna.repositories.DayBookedRepository;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -17,20 +20,35 @@ public class Booking {
     private Long id;
     @Column
     private LocalDate startDate;
-    @Column
-    private LocalDate endDate;
-    @Column
-    private List<LocalDate> daysBooked;
+    @OneToMany(mappedBy = "booking", fetch = FetchType.LAZY)
+    @JsonIgnoreProperties({"booking"})
+    private List<DayBooked> daysBooked;
     @Column
     private int numberOfDays;
+    @ManyToOne
+    @JsonIgnoreProperties({"booking"})
+    @JoinColumn(name = "bandbRoom_id", nullable = false)
+    private BAndBRoom bandbRoom;
 
     public Booking() {
     }
 
-    public Booking(int year, int month, int day, int numberOfDays) {
-        this.startDate = bookDate(year, month, day);
+    public Booking(int year, int month, int day, int numberOfDays, BAndBRoom bandbRoom) {
+        this.startDate = LocalDate.of(year, month, day);
         this.daysBooked = setDaysBooked(numberOfDays);
         this.numberOfDays = numberOfDays;
+        this.bandbRoom = bandbRoom;
+    }
+
+    public void setDaysBooked(List<DayBooked> daysBooked) {
+        this.daysBooked = daysBooked;
+    }
+
+    public void makeDayBooked(int year, int month, int day, int numberOfDays){
+        for(int i = 0; i < numberOfDays; i++){
+            DayBooked dayBooked = new DayBooked(this, year, month, day);
+            daysBooked.add(dayBooked);
+        }
     }
 
     public Long getId() {
@@ -49,16 +67,27 @@ public class Booking {
         this.startDate = startDate;
     }
 
-    public LocalDate getEndDate() {
-        return endDate;
+    public BAndBRoom getBandbRoom() {
+        return bandbRoom;
     }
 
-    public void setEndDate(LocalDate endDate) {
-        this.endDate = endDate;
+    public void setBandbRoom(BAndBRoom bandbRoom) {
+        this.bandbRoom = bandbRoom;
     }
 
     public List<LocalDate> getDaysBooked() {
-        return daysBooked;
+        List<LocalDate> daysThatHaveBeenBooked = new ArrayList<>();
+        for(int i = 0; i < daysBooked.size(); i++){
+            int year = this.daysBooked.get(i).getYear();
+            int month = this.daysBooked.get(i).getMonthValue();
+            int day = this.daysBooked.get(i).getDayOfMonth();
+            daysThatHaveBeenBooked.add(LocalDate.of(year, month, day));
+        }
+        return daysThatHaveBeenBooked;
+    }
+
+    public List<DayBooked> getDaysBookedToBeSaved() {
+        return this.daysBooked;
     }
 
     public boolean isItTheLastDayOfFeb(int day, int month){
@@ -146,19 +175,19 @@ public class Booking {
 
     }
 
-    public LocalDate bookDate(int year, int month, int day){
+    public DayBooked bookDate(int year, int month, int day){
         int bookingDay = gettingToTheEndOfMonth(day, month);
         int bookingMonth = itIsTheEndOfMonth(day, month);
         int bookingYear = happyNewYear(day, month, year);
-        LocalDate bookingDate = LocalDate.of(bookingYear, bookingMonth, bookingDay);
+        DayBooked bookingDate = new DayBooked(this, bookingYear, bookingMonth, bookingDay);
         return bookingDate;
     }
 
-    public ArrayList<LocalDate> setDaysBooked(int numberOfDays) {
+    public ArrayList<DayBooked> setDaysBooked(int numberOfDays) {
         int firstDay = this.startDate.getDayOfMonth();
         int month = this.startDate.getMonthValue();
         int year = this.startDate.getYear();
-        ArrayList<LocalDate> daysToBook = new ArrayList<>();
+        ArrayList<DayBooked> daysToBook = new ArrayList<>();
         for(int i = 0; i < numberOfDays; i++){
             daysToBook.add(bookDate(year, month, firstDay + i));
         }
