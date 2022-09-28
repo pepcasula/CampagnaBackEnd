@@ -3,6 +3,7 @@ package com.example.codeclan.capstoneproject.Campagna.user;
 import com.example.codeclan.capstoneproject.Campagna.products.Food;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -26,7 +27,7 @@ public class Farmer {
     @Column(name = "info")
     private String info;
 
-    @OneToMany(mappedBy = "farmer")
+    @OneToMany(mappedBy = "farmer", fetch = FetchType.LAZY)
     @JsonIgnoreProperties({"farmer"})
     private List<Food> foods;
 
@@ -40,6 +41,14 @@ public class Farmer {
     }
 
     public Farmer() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -88,5 +97,16 @@ public class Farmer {
 
     public void clearFoods(){
         this.foods.clear();
+    }
+
+    public void addFood(Food food){
+        this.foods.add(food);
+    }
+
+    public boolean checkIfHasFood(Food food){
+        if (this.foods.contains(food)){
+            return true;
+        }
+        return false;
     }
 }

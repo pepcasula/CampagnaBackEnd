@@ -1,6 +1,7 @@
 package com.example.codeclan.capstoneproject.Campagna.products;
 
 import com.example.codeclan.capstoneproject.Campagna.user.Farmer;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -30,7 +31,8 @@ public class Food {
     private String description;
 
     @ManyToOne
-    @JoinColumn(name = "farmer_id", nullable = false)
+    @JsonIgnoreProperties({"foods"})
+    @JoinColumn(name = "farmer_id")
     private Farmer farmer;
 
     public Food(String name, int price, FoodType foodType, int sizePerUnit, String description, Farmer farmer) {
@@ -43,6 +45,14 @@ public class Food {
     }
 
     public Food() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {

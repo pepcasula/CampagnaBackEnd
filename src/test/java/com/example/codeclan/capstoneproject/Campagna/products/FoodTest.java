@@ -84,7 +84,7 @@ public class FoodTest {
     }
 
     @Test
-    public void canSetFoodType(){
+    public void canSetType(){
         food2.setFoodType(FoodType.SWEET);
         assertEquals(FoodType.SWEET, food2.getFoodType());
     }

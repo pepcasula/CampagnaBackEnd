@@ -125,22 +125,35 @@ public class FarmerTest {
     }
 
     @Test
-    public void canSetAndGetStock(){
+    public void canSetAndGetFoods(){
         farmer1.setFoods(farmerStock1);
         assertEquals(farmerStock1, farmer1.getFoods());
     }
 
     @Test
-    public void canCountStock(){
+    public void canCountFoods(){
         assertEquals(0, farmer2.countFoods());
     }
 
     @Test
-    public void canClearStock(){
+    public void canClearFoods(){
         farmer2.setFoods(farmerStock2);
         assertEquals(2, farmer2.countFoods());
         farmer2.clearFoods();
         assertEquals(0, farmer2.countFoods());
     }
+
+    @Test
+    public void hasFood(){
+        assertEquals(0, farmer1.countFoods());
+        assertEquals(false, farmer1.checkIfHasFood(food1));
+    }
+
+    @Test
+    public void canAddFood(){
+        farmer1.addFood(food3);
+        assertEquals(true, farmer1.checkIfHasFood(food3));
+    }
+
 }
 
