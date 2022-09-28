@@ -2,6 +2,7 @@ package com.example.codeclan.capstoneproject.Campagna.controllers;
 
 import com.example.codeclan.capstoneproject.Campagna.models.bookings.Booking;
 import com.example.codeclan.capstoneproject.Campagna.repositories.BookingRepository;
+import com.example.codeclan.capstoneproject.Campagna.twilio.TwilioMessagingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,6 +35,7 @@ public class BookingController {
     @PostMapping(value = "/bookings")
     public ResponseEntity<String> createBooking(@RequestBody Booking booking){
         bookingRepository.save(booking);
+        TwilioMessagingService.main(booking.getBandb().getEmail(), "");
         return new ResponseEntity<>(booking.toString(), HttpStatus.CREATED);
     }
 

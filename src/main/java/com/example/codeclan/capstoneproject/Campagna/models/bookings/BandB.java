@@ -17,13 +17,16 @@ public class BandB {
     private String name;
     @Column
     private String email;
+    @Column
+    private String phoneNumber;
     @OneToMany(mappedBy = "bandb")
     @JsonIgnoreProperties({"bandb"})
     private List<Booking> bookings;
 
-    public BandB(String name, String email) {
+    public BandB(String name, String email, String phoneNumber) {
         this.name = name;
         this.email = email;
+        this.phoneNumber = phoneNumber;
     }
 
     public BandB() {
