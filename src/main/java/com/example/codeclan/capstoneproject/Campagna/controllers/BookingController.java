@@ -19,6 +19,7 @@ public class BookingController {
     @GetMapping(value = "/bookings")
     public ResponseEntity<List<Booking>> getAllBooking(){
         return new ResponseEntity<>(bookingRepository.findAll(), HttpStatus.OK);
+
     }
 
     @GetMapping(value = "/bookings/{id}")
@@ -32,17 +33,27 @@ public class BookingController {
     }
 
     @PostMapping(value = "/bookings")
-    public ResponseEntity<String> createBooking(@RequestBody Booking booking){
+    public ResponseEntity<Booking> createBooking(@RequestBody Booking booking){
         bookingRepository.save(booking);
-        return new ResponseEntity<>(booking.toString(), HttpStatus.CREATED);
+        return new ResponseEntity<>(booking, HttpStatus.CREATED);
     }
 
-    @PostMapping(value = "/bookings/{id}/cofirm")
+    @PostMapping(value = "/bookings/{id}/confirm")
     public ResponseEntity<String> confirmBooking(@PathVariable Long id){
         Optional<Booking> booking = bookingRepository.findById(id);
         if(booking.isPresent()){
             booking.get().setStatus(true);
+            booking.get().setAvailable(true);
         }
         return new ResponseEntity<>("Thank you for confirming", HttpStatus.OK);
+    }
+
+    @PostMapping(value = "/booking/{id}/notavailable")
+    public ResponseEntity<String> denyBooking(@PathVariable Long id){
+        Optional<Booking> booking = bookingRepository.findById(id);
+        if(booking.isPresent()){
+            booking.get().setStatus(true);
+        }
+        return new ResponseEntity<>("We will let the clients know", HttpStatus.OK);
     }
 }

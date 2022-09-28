@@ -4,19 +4,20 @@ import com.example.codeclan.capstoneproject.Campagna.models.bookings.BandB;
 import com.example.codeclan.capstoneproject.Campagna.models.bookings.Booking;
 import com.example.codeclan.capstoneproject.Campagna.models.products.Food;
 import com.example.codeclan.capstoneproject.Campagna.models.products.FoodType;
+import com.example.codeclan.capstoneproject.Campagna.models.user.Farmer;
 import com.example.codeclan.capstoneproject.Campagna.repositories.BandBRepository;
 import com.example.codeclan.capstoneproject.Campagna.repositories.BookingRepository;
 import com.example.codeclan.capstoneproject.Campagna.repositories.FarmerRepository;
 import com.example.codeclan.capstoneproject.Campagna.repositories.FoodRepository;
-import com.example.codeclan.capstoneproject.Campagna.models.user.Farmer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 
 
-//@Component
+@Component
 public class DataLoader implements ApplicationRunner {
 
     @Autowired
@@ -30,10 +31,10 @@ public class DataLoader implements ApplicationRunner {
     public DataLoader() {
     }
 
-    @Override
+//    @Override
     public void run(ApplicationArguments args) {
 
-        BandB bandB = new BandB("The Bee and Bear", "B&B@BeeBear.com");
+        BandB bandB = new BandB("The Bee and Bear", "B&B@BeeBear.com", "+447769864725");
         Booking booking = new Booking(bandB, LocalDate.of(2022, 5, 20), LocalDate.of(2022, 5, 3), 2);
         bandBRepository.save(bandB);
         bookingRepository.save(booking);
