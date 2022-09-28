@@ -1,38 +1,46 @@
-package com.example.codeclan.capstoneproject.Campagna.accomodations.models;
-
-public class CampSitePitch{
-
-    private String name;
-    private int capacity;
-    private int price;
-
-    public CampSitePitch(String name, int capacity, int price){
-        this.name = name;
-        this.capacity = capacity;
-        this.price = price;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getCapacity() {
-        return capacity;
-    }
-
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-}
+//package com.example.codeclan.capstoneproject.Campagna.accomodations.models;
+//
+//import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+//
+//import javax.persistence.*;
+//
+//@Entity
+//@Table(name = "campsitePitches")
+//public class CampSitePitch extends Room{
+//
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Column
+//    private Long id;
+////    @Column
+////    private String name;
+////    @Column
+////    private int capacity;
+////    @Column
+////    private int price;
+////    @OneToMany(mappedBy = "campSitePitch")
+////    @JsonIgnoreProperties({"campSitePitch"})
+////    private List<Booking> bookings;
+//    @ManyToOne
+//    @JsonIgnoreProperties({"campSitePitch"})
+//    @JoinColumn(name = "campSite_id", nullable = false)
+//    private CampSite campSite;
+//
+//    public CampSitePitch(String name, RoomType roomType, int price) {
+//        super(name, roomType, price);
+//    }
+//
+//
+////    public CampSitePitch(String name, int capacity, int price, CampSite campSite){
+////        this.name = name;
+////        this.capacity = capacity;
+////        this.campSite = campSite;
+////        this.price = price;
+////        this.bookings = new ArrayList<>();
+////    }
+//
+//    public CampSitePitch() {
+//    }
+//
+//
+//}
