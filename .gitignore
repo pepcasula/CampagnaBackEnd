@@ -52,5 +52,4 @@ build/
 out/
 target/
 .idea_modules/
-!/src/main/java/com/example/codeclan/capstoneproject/Campagna/twilio/Credentials.java
-!/src/main/java/com/example/codeclan/capstoneproject/Campagna/twilio/Credentials.java
+/src/main/java/com/example/codeclan/capstoneproject/Campagna/twilio/Credentials.java
