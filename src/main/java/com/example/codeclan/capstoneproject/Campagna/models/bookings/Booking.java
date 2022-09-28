@@ -23,12 +23,15 @@ public class Booking {
     private LocalDate endDate;
     @Column
     private Boolean status;
+    @Column
+    private int numberOfGuests;
 
     public Booking(BandB bandb, LocalDate startDate, LocalDate endDate, int numberOfGuests) {
         this.bandb = bandb;
         this.startDate = startDate;
         this.endDate = endDate;
         this.status = false;
+        this.numberOfGuests = numberOfGuests;
     }
 
     public Booking() {

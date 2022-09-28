@@ -17,6 +17,7 @@ public class BookingController {
     @Autowired
     BookingRepository bookingRepository;
 
+
     @GetMapping(value = "/bookings")
     public ResponseEntity<List<Booking>> getAllBooking(){
         return new ResponseEntity<>(bookingRepository.findAll(), HttpStatus.OK);
@@ -34,8 +35,11 @@ public class BookingController {
 
     @PostMapping(value = "/bookings")
     public ResponseEntity<String> createBooking(@RequestBody Booking booking){
+        System.out.println("Happy here");
         bookingRepository.save(booking);
-        TwilioMessagingService.main(booking.getBandb().getEmail(), "");
+        System.out.println("Happy here too");
+        TwilioMessagingService.main(booking.getBandb().getPhoneNumber(), "it worked");
+        System.out.println("should all work");
         return new ResponseEntity<>(booking.toString(), HttpStatus.CREATED);
     }
 
