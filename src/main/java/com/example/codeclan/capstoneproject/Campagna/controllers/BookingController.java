@@ -1,14 +1,12 @@
 package com.example.codeclan.capstoneproject.Campagna.controllers;
 
-import com.example.codeclan.capstoneproject.Campagna.accomodations.bookings.BandB;
-import com.example.codeclan.capstoneproject.Campagna.accomodations.bookings.Booking;
+import com.example.codeclan.capstoneproject.Campagna.models.bookings.Booking;
 import com.example.codeclan.capstoneproject.Campagna.repositories.BookingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.awt.print.Book;
 import java.util.List;
 import java.util.Optional;
 

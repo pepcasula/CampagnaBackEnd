@@ -1,4 +1,4 @@
-package com.example.codeclan.capstoneproject.Campagna.products;
+package com.example.codeclan.capstoneproject.Campagna.models.products;
 
 public enum FoodType {
     VEGETABLE("g"),

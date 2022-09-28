@@ -1,6 +1,6 @@
 package com.example.codeclan.capstoneproject.Campagna.repositories;
 
-import com.example.codeclan.capstoneproject.Campagna.accomodations.bookings.Booking;
+import com.example.codeclan.capstoneproject.Campagna.models.bookings.Booking;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

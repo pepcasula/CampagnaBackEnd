@@ -1,6 +1,6 @@
 package com.example.codeclan.capstoneproject.Campagna.controllers;
 
-import com.example.codeclan.capstoneproject.Campagna.accomodations.bookings.BandB;
+import com.example.codeclan.capstoneproject.Campagna.models.bookings.BandB;
 import com.example.codeclan.capstoneproject.Campagna.repositories.BandBRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

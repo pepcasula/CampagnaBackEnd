@@ -1,9 +1,7 @@
-package com.example.codeclan.capstoneproject.Campagna.user;
+package com.example.codeclan.capstoneproject.Campagna.models.user;
 
-import com.example.codeclan.capstoneproject.Campagna.products.Food;
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.example.codeclan.capstoneproject.Campagna.models.products.Food;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.ArrayList;

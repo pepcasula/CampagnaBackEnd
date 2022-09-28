@@ -1,4 +1,4 @@
-package com.example.codeclan.capstoneproject.Campagna.accomodations.bookings;
+package com.example.codeclan.capstoneproject.Campagna.models.bookings;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

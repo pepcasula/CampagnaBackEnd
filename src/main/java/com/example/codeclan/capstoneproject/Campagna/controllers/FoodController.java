@@ -1,9 +1,8 @@
 package com.example.codeclan.capstoneproject.Campagna.controllers;
-import com.example.codeclan.capstoneproject.Campagna.products.Food;
-import com.example.codeclan.capstoneproject.Campagna.products.FoodType;
+import com.example.codeclan.capstoneproject.Campagna.models.products.Food;
+import com.example.codeclan.capstoneproject.Campagna.models.products.FoodType;
 import com.example.codeclan.capstoneproject.Campagna.repositories.FarmerRepository;
 import com.example.codeclan.capstoneproject.Campagna.repositories.FoodRepository;
-import com.example.codeclan.capstoneproject.Campagna.user.Farmer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

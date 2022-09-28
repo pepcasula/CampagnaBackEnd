@@ -1,6 +1,8 @@
 package com.example.codeclan.capstoneproject.Campagna.products;
 
-import com.example.codeclan.capstoneproject.Campagna.user.Farmer;
+import com.example.codeclan.capstoneproject.Campagna.models.products.Food;
+import com.example.codeclan.capstoneproject.Campagna.models.products.FoodType;
+import com.example.codeclan.capstoneproject.Campagna.models.user.Farmer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
