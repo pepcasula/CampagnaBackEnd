@@ -22,7 +22,9 @@ public class Booking {
     @Column
     private LocalDate endDate;
     @Column
-    private Boolean status;
+    private boolean status;
+    @Column
+    private boolean available;
     @Column
     private int numberOfGuests;
 
@@ -31,6 +33,7 @@ public class Booking {
         this.startDate = startDate;
         this.endDate = endDate;
         this.status = false;
+        this.available = false;
         this.numberOfGuests = numberOfGuests;
     }
 
@@ -43,6 +46,14 @@ public class Booking {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public BandB getBandb() {
+        return bandb;
+    }
+
+    public void setBandb(BandB bandb) {
+        this.bandb = bandb;
     }
 
     public LocalDate getStartDate() {
@@ -61,19 +72,27 @@ public class Booking {
         this.endDate = endDate;
     }
 
-    public BandB getBandb() {
-        return bandb;
-    }
-
-    public void setBandb(BandB bandb) {
-        this.bandb = bandb;
-    }
-
-    public Boolean getStatus() {
+    public boolean isStatus() {
         return status;
     }
 
-    public void setStatus(Boolean status) {
+    public void setStatus(boolean status) {
         this.status = status;
+    }
+
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
+    }
+
+    public int getNumberOfGuests() {
+        return numberOfGuests;
+    }
+
+    public void setNumberOfGuests(int numberOfGuests) {
+        this.numberOfGuests = numberOfGuests;
     }
 }
