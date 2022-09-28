@@ -1,5 +1,6 @@
 package com.example.codeclan.capstoneproject.Campagna.accomodations.bookingsTest;
 
+import com.example.codeclan.capstoneproject.Campagna.accomodations.models.BAndB;
 import com.example.codeclan.capstoneproject.Campagna.accomodations.models.*;
 import com.example.codeclan.capstoneproject.Campagna.user.Host;
 import org.junit.jupiter.api.BeforeEach;
