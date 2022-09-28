@@ -24,7 +24,7 @@ public class Booking {
     @Column
     private Boolean status;
 
-    public Booking(BandB bandb, LocalDate startDate, LocalDate endDate) {
+    public Booking(BandB bandb, LocalDate startDate, LocalDate endDate, int numberOfGuests) {
         this.bandb = bandb;
         this.startDate = startDate;
         this.endDate = endDate;

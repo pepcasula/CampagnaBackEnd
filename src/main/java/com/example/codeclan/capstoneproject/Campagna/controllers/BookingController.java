@@ -39,4 +39,9 @@ public class BookingController {
         return new ResponseEntity<>(booking.toString(), HttpStatus.CREATED);
     }
 
+    @PostMapping(value = "/bookings/{id}/cofirm")
+    public ResponseEntity<String> confirmBooking(@PathVariable Long id){
+        Optional<Booking> booking = bookingRepository.findById(id);
+        return new ResponseEntity<>("Thank you for confirming", HttpStatus.OK);
+    }
 }
