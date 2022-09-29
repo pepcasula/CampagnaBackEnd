@@ -2,6 +2,7 @@ package com.example.codeclan.capstoneproject.Campagna.controllers;
 
 import com.example.codeclan.capstoneproject.Campagna.models.bookings.Booking;
 import com.example.codeclan.capstoneproject.Campagna.repositories.BookingRepository;
+import com.example.codeclan.capstoneproject.Campagna.twilio.TwilioMessagingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -41,9 +42,14 @@ public class BookingController {
     @PostMapping(value = "/bookings")
     public ResponseEntity<Booking> createBooking(@RequestBody Booking booking){
         bookingRepository.save(booking);
+        Optional<Booking> booking1 = bookingRepository.findById(booking.getId());
+        TwilioMessagingService messageService = new TwilioMessagingService();
         System.out.println(booking.getId());
-//        TwilioMessagingService messageService = new TwilioMessagingService();
-//        messageService.send(ACCOUNT_SID, AUTH_TOKEN);
+        System.out.println(booking1.isPresent());
+        System.out.println(booking1.get().getBandb().getPhoneNumber());
+        System.out.println(booking.getBandb().getPhoneNumber());
+
+        messageService.send(ACCOUNT_SID, AUTH_TOKEN);
         return new ResponseEntity<>(booking, HttpStatus.CREATED);
     }
 
@@ -53,7 +59,20 @@ public class BookingController {
         if(booking.isPresent()){
             booking.get().setStatus(true);
             booking.get().setAvailable(true);
+            bookingRepository.save(booking.get());
             return new ResponseEntity<>("Thank you for confirming", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("There was an issue", HttpStatus.OK);
+        }
+    }
+
+    @PostMapping(value = "/bookings/{id}/notavailable")
+    public ResponseEntity<String > cannotFulfillBooking(@PathVariable Long id){
+        Optional<Booking> booking = bookingRepository.findById(id);
+        if(booking.isPresent()){
+            booking.get().setStatus(true);
+            bookingRepository.save(booking.get());
+            return new ResponseEntity<>("We will let the client know", HttpStatus.OK);
         } else {
             return new ResponseEntity<>("There was an issue", HttpStatus.OK);
         }
