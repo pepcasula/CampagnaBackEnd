@@ -1,8 +1,12 @@
 package com.example.codeclan.capstoneproject.Campagna.controllers;
 
+import com.example.codeclan.capstoneproject.Campagna.models.bookings.BandB;
 import com.example.codeclan.capstoneproject.Campagna.models.bookings.Booking;
+import com.example.codeclan.capstoneproject.Campagna.repositories.BandBRepository;
 import com.example.codeclan.capstoneproject.Campagna.repositories.BookingRepository;
+import com.example.codeclan.capstoneproject.Campagna.twilio.TwilioMessagingService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +19,14 @@ public class BookingController {
 
     @Autowired
     BookingRepository bookingRepository;
+    @Autowired
+    BandBRepository bandBRepository;
+
+    @Value("${ACCOUNT_SID}")
+    String ACCOUNT_SID;
+
+    @Value("${AUTH_TOKEN}")
+    private String AUTH_TOKEN;
 
     @GetMapping(value = "/bookings")
     public ResponseEntity<List<Booking>> getAllBooking(){
@@ -35,6 +47,11 @@ public class BookingController {
     @PostMapping(value = "/bookings")
     public ResponseEntity<Booking> createBooking(@RequestBody Booking booking){
         bookingRepository.save(booking);
+        Optional<BandB> bandb = bandBRepository.findById(booking.getBandb().getId());
+        TwilioMessagingService messageService = new TwilioMessagingService();
+        String message = String.format("Booking created.%n You have %s guests wanting to book from %s to %s.%n To confirm availability please go to - localhost:8080/bookings/%s/confirm %n If you have no availability please go to localhost:8080/bookings/%s/notavailable", booking.getNumberOfGuests(), booking.getStartDate(), booking.getEndDate(), booking.getId(), booking.getId());
+        messageService.send(ACCOUNT_SID, AUTH_TOKEN, bandb.get().getPhoneNumber(), message);
+
         return new ResponseEntity<>(booking, HttpStatus.CREATED);
     }
 
@@ -44,8 +61,23 @@ public class BookingController {
         if(booking.isPresent()){
             booking.get().setStatus(true);
             booking.get().setAvailable(true);
+            bookingRepository.save(booking.get());
+            return new ResponseEntity<>("Thank you for confirming", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("There was an issue", HttpStatus.OK);
         }
-        return new ResponseEntity<>("Thank you for confirming", HttpStatus.OK);
+    }
+
+    @PostMapping(value = "/bookings/{id}/notavailable")
+    public ResponseEntity<String > cannotFulfillBooking(@PathVariable Long id){
+        Optional<Booking> booking = bookingRepository.findById(id);
+        if(booking.isPresent()){
+            booking.get().setStatus(true);
+            bookingRepository.save(booking.get());
+            return new ResponseEntity<>("We will let the client know", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("There was an issue", HttpStatus.OK);
+        }
     }
 
     @PostMapping(value = "/booking/{id}/notavailable")

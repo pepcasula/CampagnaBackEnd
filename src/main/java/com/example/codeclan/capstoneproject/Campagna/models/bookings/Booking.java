@@ -13,7 +13,7 @@ public class Booking {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Long id;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JsonIgnoreProperties({"booking"})
     @JoinColumn(name = "bandb_id", nullable = false)
     private BandB bandb;
@@ -48,6 +48,14 @@ public class Booking {
         this.id = id;
     }
 
+    public BandB getBandb() {
+        return bandb;
+    }
+
+    public void setBandb(BandB bandb) {
+        this.bandb = bandb;
+    }
+
     public LocalDate getStartDate() {
         return startDate;
     }
@@ -64,13 +72,14 @@ public class Booking {
         this.endDate = endDate;
     }
 
-    public BandB getBandb() {
-        return bandb;
+    public boolean isStatus() {
+        return status;
     }
 
-    public void setBandb(BandB bandb) {
-        this.bandb = bandb;
+    public void setStatus(boolean status) {
+        this.status = status;
     }
+
 
     public boolean isStatus() {
         return status;
@@ -78,6 +87,21 @@ public class Booking {
 
     public void setStatus(boolean status) {
         this.status = status;
+
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
+    }
+
+    public int getNumberOfGuests() {
+        return numberOfGuests;
+    }
+
+    public void setNumberOfGuests(int numberOfGuests) {
+        this.numberOfGuests = numberOfGuests;
     }
 
     public boolean isAvailable() {
