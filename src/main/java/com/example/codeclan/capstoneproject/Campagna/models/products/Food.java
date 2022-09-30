@@ -26,6 +26,9 @@ public class Food {
     @Column(name = "size")
     private int sizePerUnit;
 
+    @Column(name = "measurementUnit")
+    private String measurementUnit;
+
     @Column(name = "description")
     private String description;
 
@@ -39,6 +42,7 @@ public class Food {
         this.price = price;
         this.description = description;
         this.foodType = foodType;
+        this.measurementUnit = this.foodType.getMeasureUnit();
         this.sizePerUnit = sizePerUnit;
         this.farmer = farmer;
     }
