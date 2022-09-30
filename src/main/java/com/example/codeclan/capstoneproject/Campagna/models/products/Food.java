@@ -110,4 +110,12 @@ public class Food {
     public void setFarmer(Farmer farmer) {
         this.farmer = farmer;
     }
+
+    public String getMeasurementUnit() {
+        return measurementUnit;
+    }
+
+    public void setMeasurementUnit(String measurementUnit) {
+        this.measurementUnit = measurementUnit;
+    }
 }
