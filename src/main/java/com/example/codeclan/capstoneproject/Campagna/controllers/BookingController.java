@@ -1,6 +1,8 @@
 package com.example.codeclan.capstoneproject.Campagna.controllers;
 
+import com.example.codeclan.capstoneproject.Campagna.models.bookings.BandB;
 import com.example.codeclan.capstoneproject.Campagna.models.bookings.Booking;
+import com.example.codeclan.capstoneproject.Campagna.repositories.BandBRepository;
 import com.example.codeclan.capstoneproject.Campagna.repositories.BookingRepository;
 import com.example.codeclan.capstoneproject.Campagna.twilio.TwilioMessagingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,8 @@ public class BookingController {
 
     @Autowired
     BookingRepository bookingRepository;
+    @Autowired
+    BandBRepository bandBRepository;
 
     @Value("${ACCOUNT_SID}")
     String ACCOUNT_SID;
@@ -42,18 +46,14 @@ public class BookingController {
     @PostMapping(value = "/bookings")
     public ResponseEntity<Booking> createBooking(@RequestBody Booking booking){
         bookingRepository.save(booking);
-        Optional<Booking> booking1 = bookingRepository.findById(booking.getId());
+        Optional<BandB> bandb = bandBRepository.findById(booking.getBandb().getId());
         TwilioMessagingService messageService = new TwilioMessagingService();
-        System.out.println(booking.getId());
-        System.out.println(booking1.isPresent());
-        System.out.println(booking1.get().getBandb().getPhoneNumber());
-        System.out.println(booking.getBandb().getPhoneNumber());
-
-        messageService.send(ACCOUNT_SID, AUTH_TOKEN);
+        String message = String.format("Booking created.%n You have %s guests wanting to book from %s to %s.%n To confirm availability please go to - localhost:8080/bookings/%s/confirm %n If you have no availability please go to localhost:8080/bookings/%s/notavailable", booking.getNumberOfGuests(), booking.getStartDate(), booking.getEndDate(), booking.getId(), booking.getId());
+        messageService.send(ACCOUNT_SID, AUTH_TOKEN, bandb.get().getPhoneNumber(), message);
         return new ResponseEntity<>(booking, HttpStatus.CREATED);
     }
 
-    @PostMapping(value = "/bookings/{id}/cofirm")
+    @PostMapping(value = "/bookings/{id}/confirm")
     public ResponseEntity<String> confirmBooking(@PathVariable Long id){
         Optional<Booking> booking = bookingRepository.findById(id);
         if(booking.isPresent()){

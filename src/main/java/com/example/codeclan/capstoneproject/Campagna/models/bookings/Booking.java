@@ -13,7 +13,7 @@ public class Booking {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Long id;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JsonIgnoreProperties({"booking"})
     @JoinColumn(name = "bandb_id", nullable = false)
     private BandB bandb;

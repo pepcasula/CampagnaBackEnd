@@ -35,8 +35,10 @@ public class DataLoader implements ApplicationRunner {
 
         BandB bandB = new BandB("The Bee and Bear", "B&B@BeeBear.com", "+447769864725");
         Booking booking = new Booking(bandB, LocalDate.of(2022, 5, 20), LocalDate.of(2022, 5, 3), 2);
+        BandB marBanB = new BandB("Mar's Creepy Cottage", "TheCreepyCottage@MarCottage.com", "+447594364070");
         bandBRepository.save(bandB);
         bookingRepository.save(booking);
+        bandBRepository.save(marBanB);
 
         Farmer farmer1 = new Farmer(
                 "Nicholas Bigbelly",
