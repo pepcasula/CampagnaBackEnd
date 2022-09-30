@@ -52,6 +52,7 @@ build/
 out/
 target/
 .idea_modules/
+
 ### Codeclan java template
 # Created by .ignore support plugin (hsz.mobi)
 ### Java template
@@ -73,3 +74,4 @@ target/
 out/
 target/
 .idea_modules/
+

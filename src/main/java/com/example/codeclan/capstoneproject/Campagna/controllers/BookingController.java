@@ -31,6 +31,7 @@ public class BookingController {
     @GetMapping(value = "/bookings")
     public ResponseEntity<List<Booking>> getAllBooking(){
         return new ResponseEntity<>(bookingRepository.findAll(), HttpStatus.OK);
+
     }
 
     @GetMapping(value = "/bookings/{id}")
@@ -50,6 +51,7 @@ public class BookingController {
         TwilioMessagingService messageService = new TwilioMessagingService();
         String message = String.format("Booking created.%n You have %s guests wanting to book from %s to %s.%n To confirm availability please go to - localhost:8080/bookings/%s/confirm %n If you have no availability please go to localhost:8080/bookings/%s/notavailable", booking.getNumberOfGuests(), booking.getStartDate(), booking.getEndDate(), booking.getId(), booking.getId());
         messageService.send(ACCOUNT_SID, AUTH_TOKEN, bandb.get().getPhoneNumber(), message);
+
         return new ResponseEntity<>(booking, HttpStatus.CREATED);
     }
 
@@ -76,5 +78,14 @@ public class BookingController {
         } else {
             return new ResponseEntity<>("There was an issue", HttpStatus.OK);
         }
+    }
+
+    @PostMapping(value = "/booking/{id}/notavailable")
+    public ResponseEntity<String> denyBooking(@PathVariable Long id){
+        Optional<Booking> booking = bookingRepository.findById(id);
+        if(booking.isPresent()){
+            booking.get().setStatus(true);
+        }
+        return new ResponseEntity<>("We will let the clients know", HttpStatus.OK);
     }
 }
