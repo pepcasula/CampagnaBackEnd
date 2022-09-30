@@ -4,7 +4,6 @@ import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 
 public class TwilioMessagingService {
-
     public void send(String ACCOUNT_SID, String AUTH_TOKEN, String phoneNumber, String messageBody) {
             Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
             Message message = Message.creator(
