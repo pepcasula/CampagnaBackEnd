@@ -19,7 +19,7 @@ public enum FoodType {
     }
 
     public String getMeasureUnit() {
-        return measureUnit;
+        return this.measureUnit;
     }
 }
 

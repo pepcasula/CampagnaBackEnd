@@ -32,18 +32,22 @@ public class Food {
     @Column(name = "description")
     private String description;
 
+    @Column(name ="imgurl")
+    private String imageUrl;
+
     @ManyToOne
     @JsonIgnoreProperties({"foods"})
     @JoinColumn(name = "farmer_id")
     private Farmer farmer;
 
-    public Food(String name, int price, FoodType foodType, int sizePerUnit, String description, Farmer farmer) {
+    public Food(String name, int price, FoodType foodType, int sizePerUnit, String description, String imageUrl, Farmer farmer) {
         this.name = name;
         this.price = price;
         this.description = description;
         this.foodType = foodType;
         this.measurementUnit = this.foodType.getMeasureUnit();
         this.sizePerUnit = sizePerUnit;
+        this.imageUrl = imageUrl;
         this.farmer = farmer;
     }
 
@@ -117,5 +121,13 @@ public class Food {
 
     public void setMeasurementUnit(String measurementUnit) {
         this.measurementUnit = measurementUnit;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

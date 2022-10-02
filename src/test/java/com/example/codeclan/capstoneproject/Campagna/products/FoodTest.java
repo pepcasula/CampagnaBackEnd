@@ -33,6 +33,7 @@ public class FoodTest {
                 FoodType.HONEY,
                 500,
                 "A golden amber coloured, aromatic honey that slowly crystalises over time.",
+                "../../honey01.png",
                 farmer1
         );
         food2 = new Food(
@@ -41,6 +42,7 @@ public class FoodTest {
                 FoodType.DRINK,
                 70,
                 "Pantumas has a light golden colour like onion skin, it is fruity, floral, fresh, mineral with a very persistent aftertaste.",
+                "../../wine01.png",
                 farmer2
         );
     }
@@ -116,6 +118,22 @@ public class FoodTest {
     public void canSetFarmer(){
         food2.setFarmer(farmer1);
         assertEquals(farmer1, food2.getFarmer());
+    }
+
+    @Test
+    public void canGetMeasurementUnit(){
+        assertEquals("g", food1.getMeasurementUnit());
+    }
+
+    @Test
+    public void canGetImageUrl(){
+        assertEquals("../../honey01.png", food1.getImageUrl());
+    }
+
+    @Test
+    public void canSetImageUrl(){
+        food2.setImageUrl("../../wine99.png");
+        assertEquals("../../wine99.png", food2.getImageUrl());
     }
 }
 

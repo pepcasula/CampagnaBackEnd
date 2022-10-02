@@ -41,6 +41,7 @@ public class FarmerTest {
                 FoodType.HONEY,
                 500,
                 "A golden amber coloured, aromatic honey that slowly crystalises over time.",
+                "../../honey01.png",
                 farmer1
         );
         food2 = new Food(
@@ -49,6 +50,7 @@ public class FarmerTest {
                 FoodType.DRINK,
                 70,
                 "Pantumas has a light golden colour like onion skin, it is fruity, floral, fresh, mineral with a very persistent aftertaste.",
+                "../../wine01.png",
                 farmer1
         );
         food3 = new Food(
@@ -57,6 +59,7 @@ public class FarmerTest {
                 FoodType.BAKERY,
                 450,
                 "Super rich in flavor, this traditional homemade bread is plenty of healthy fiber and vitamins.",
+                "../../bread01.png",
                 farmer2
         );
         food4 = new Food(
@@ -65,6 +68,7 @@ public class FarmerTest {
                 FoodType.OIL,
                 500,
                 "Like fresh juice, this unfiltered extra-virgin olive oil retains a light olive pulp, offering a fuller palette of taste notes.",
+                "../../bread01.png",
                 farmer2
         );
 
