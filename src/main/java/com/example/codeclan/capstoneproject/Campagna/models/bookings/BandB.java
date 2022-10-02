@@ -19,14 +19,17 @@ public class BandB {
     private String email;
     @Column
     private String phoneNumber;
+    @Column (name = "imageurl")
+    private String imageUrl;
     @OneToMany(mappedBy = "bandb")
     @JsonIgnoreProperties({"bandb"})
     private List<Booking> bookings;
 
-    public BandB(String name, String email, String phoneNumber) {
+    public BandB(String name, String email, String phoneNumber, String imageUrl) {
         this.name = name;
         this.email = email;
         this.phoneNumber = phoneNumber;
+        this.imageUrl = imageUrl;
     }
 
     public BandB() {
@@ -70,5 +73,13 @@ public class BandB {
 
     public void setBookings(List<Booking> bookings) {
         this.bookings = bookings;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }
