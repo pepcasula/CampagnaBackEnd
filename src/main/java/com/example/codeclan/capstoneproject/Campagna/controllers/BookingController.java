@@ -22,11 +22,11 @@ public class BookingController {
     @Autowired
     BandBRepository bandBRepository;
 
-    @Value("${ACCOUNT_SID}")
-    String ACCOUNT_SID;
-
-    @Value("${AUTH_TOKEN}")
-    private String AUTH_TOKEN;
+//    @Value("${ACCOUNT_SID}")
+//    String ACCOUNT_SID;
+//
+//    @Value("${AUTH_TOKEN}")
+//    private String AUTH_TOKEN;
 
     @GetMapping(value = "/bookings")
     public ResponseEntity<List<Booking>> getAllBooking(){
@@ -50,7 +50,7 @@ public class BookingController {
         Optional<BandB> bandb = bandBRepository.findById(booking.getBandb().getId());
         TwilioMessagingService messageService = new TwilioMessagingService();
         String message = String.format("Booking created.%n You have %s guests wanting to book from %s to %s.%n To confirm availability please go to - localhost:8080/bookings/%s/confirm %n If you have no availability please go to localhost:8080/bookings/%s/notavailable", booking.getNumberOfGuests(), booking.getStartDate(), booking.getEndDate(), booking.getId(), booking.getId());
-        messageService.send(ACCOUNT_SID, AUTH_TOKEN, bandb.get().getPhoneNumber(), message);
+//        messageService.send(ACCOUNT_SID, AUTH_TOKEN, bandb.get().getPhoneNumber(), message);
         return new ResponseEntity<>(booking, HttpStatus.CREATED);
     }
 

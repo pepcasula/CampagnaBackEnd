@@ -16,7 +16,7 @@ public class BookingTest {
 
     @BeforeEach
     public void before(){
-        b  = new BandB("Bee", "&@B.com", "7", "../../beeandbear01.png");
+        b  = new BandB("Bee", "&@B.com", "7", "../../beeandbear01.png", "bb01int.png");
         booking  = new Booking(b, LocalDate.of(2022, 5, 5), LocalDate.of(2022, 5, 6), 6);
     }
 
