@@ -19,7 +19,7 @@ public class BandB {
     private String email;
     @Column
     private String phoneNumber;
-    @Column (name = "imageurl")
+    @Column (name = "image_url")
     private String imageUrl;
     @OneToMany(mappedBy = "bandb")
     @JsonIgnoreProperties({"bandb"})

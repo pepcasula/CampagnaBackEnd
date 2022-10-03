@@ -32,7 +32,7 @@ public class Food {
     @Column(name = "description")
     private String description;
 
-    @Column(name ="imgurl")
+    @Column(name ="img_url")
     private String imageUrl;
 
     @ManyToOne
