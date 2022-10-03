@@ -33,9 +33,9 @@ public class DataLoader implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) {
 
-        BandB bandB = new BandB("The Bee and Bear", "B&B@BeeBear.com", "+447769864725", "\"beeandbear01.png\"");
+        BandB bandB = new BandB("The Bee and Bear", "B&B@BeeBear.com", "+447769864725", "beeandbear01.png");
         Booking booking = new Booking(bandB, LocalDate.of(2022, 5, 20), LocalDate.of(2022, 5, 3), 2);
-        BandB marBanB = new BandB("Mar's Creepy Cottage", "TheCreepyCottage@MarCottage.com", "+447594364070", "\"creepy2.webp\"");
+        BandB marBanB = new BandB("Mar's Creepy Cottage", "TheCreepyCottage@MarCottage.com", "+447594364070", "creepy2.webp");
         bandBRepository.save(bandB);
         bookingRepository.save(booking);
         bandBRepository.save(marBanB);
@@ -65,7 +65,7 @@ public class DataLoader implements ApplicationRunner {
                 FoodType.HONEY,
                 500,
                 "A golden amber coloured, aromatic honey that slowly crystalises over time.",
-                "../../honey01.png",
+                "honey01.png",
                 farmer1
         );
         foodRepository.save(food1);
@@ -76,7 +76,7 @@ public class DataLoader implements ApplicationRunner {
                 FoodType.DRINK,
                 70,
                 "Pantumas has a light golden colour like onion skin, it is fruity, floral, fresh, mineral with a very persistent aftertaste.",
-                "../../wine01.png",
+                "wine01.png",
                 farmer1
         );
         foodRepository.save(food2);
@@ -87,7 +87,7 @@ public class DataLoader implements ApplicationRunner {
                 FoodType.BAKERY,
                 450,
                 "Super rich in flavor, this traditional homemade bread is plenty of healthy fiber and vitamins.",
-                "../../bread01.png",
+                "bread01.png",
                 farmer2
         );
         foodRepository.save(food3);
@@ -98,7 +98,7 @@ public class DataLoader implements ApplicationRunner {
                 FoodType.OIL,
                 500,
                 "Like fresh juice, this unfiltered extra-virgin olive oil retains a light olive pulp, offering a fuller palette of taste notes.",
-                "../../oil01.png",
+                "oil01.png",
                 farmer2
         );
         foodRepository.save(food4);
