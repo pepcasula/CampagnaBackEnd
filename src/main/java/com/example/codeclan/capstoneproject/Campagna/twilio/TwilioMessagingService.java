@@ -11,7 +11,6 @@ public class TwilioMessagingService {
                             "MG27a544a4ae6d327987476c605f0e9a0c",
                             messageBody)
                     .create();
-
             System.out.println(message.getSid());
     }
 }
