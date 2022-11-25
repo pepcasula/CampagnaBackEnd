@@ -12,6 +12,6 @@ createdb campagna
 Once the database is created, execute the runner file <em>CampagnaApplication.java</em> under  
 <em>/src/main/java/com/example/codeclan/capstoneproject/campagna</em>.
 
-The back-end app will run the logics and feed the database.
+The back-end app will run the logics and seed the database.
 
 Once done, you can run the front-end. Find the repository at https://github.com/pepcasula/CampagnaFrontEnd.
